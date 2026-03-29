@@ -191,6 +191,18 @@ body{background:var(--bg);color:var(--cream);font-family:var(--font-body);font-s
 .kpi-n{font-size:18px;font-weight:700;font-family:var(--font-mono)}
 .kpi-l{font-size:9px;color:var(--dim);text-transform:uppercase;letter-spacing:0.08em;margin-top:2px}
 
+/* PROGRESSIVE DISCLOSURE */
+.pd-item{border-bottom:1px solid var(--border);cursor:pointer;transition:background .12s}
+.pd-item:last-child{border-bottom:none}
+.pd-item:hover .pd-text{color:var(--orange)}
+.pd-summary{display:flex;align-items:baseline;gap:10px;padding:10px 0}
+.pd-arrow{font-size:14px;color:var(--orange);font-family:var(--font-mono);transition:transform .2s;display:inline-block;min-width:10px;line-height:1}
+.pd-item.open .pd-arrow{transform:rotate(90deg)}
+.pd-week{font-size:9px;font-family:var(--font-mono);font-weight:600;color:var(--dim);letter-spacing:0.1em;text-transform:uppercase;width:52px;min-width:52px;flex-shrink:0;padding-top:1px}
+.pd-text{font-size:12px;font-weight:500;color:var(--cream);line-height:1.5;flex:1;transition:color .12s}
+.pd-detail{display:none;font-size:11px;color:var(--muted);line-height:1.7;padding:0 0 12px 54px;animation:fadeIn .15s ease}
+.pd-item.open .pd-detail{display:block}
+
 /* COMPANY SNAPSHOT */
 .snapshot-grid{display:grid;grid-template-columns:2fr 1fr;gap:16px;margin-bottom:16px}
 .snapshot-stat{text-align:center;padding:14px 10px;background:var(--bg3);border-radius:6px}
@@ -361,18 +373,18 @@ hr.section-hr{border:none;border-top:1px solid var(--border);margin:24px 0}
     <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:20px">
       <div class="card" style="border-left:3px solid var(--orange)">
         <div class="card-label" style="color:var(--orange)">Why Cursor</div>
-        <div style="font-size:13px;font-weight:600;color:var(--cream);margin-bottom:8px">The category is won. The product isn't.</div>
-        <p>90% of Fortune 100 already have an AI coding tool deployed — which means the budget line exists and the conversation has already shifted. The question is no longer whether to use AI coding tools. It's whether Copilot's file-level autocomplete is enough for a codebase that spans hundreds of microservices. It almost never is. Cursor's full-codebase context, model neutrality, and native agent mode are structural advantages that close that gap.</p>
+        <div style="font-size:18px;font-weight:700;color:var(--cream);line-height:1.3;margin-bottom:10px">The category is won.<br>The product isn't.</div>
+        <p style="font-size:12px;line-height:1.65">90% of Fortune 100 have an AI coding tool deployed. The question is whether file-level autocomplete is enough for a codebase that spans hundreds of microservices. It almost never is.</p>
       </div>
       <div class="card" style="border-left:3px solid var(--teal)">
         <div class="card-label" style="color:var(--teal)">Why Now</div>
-        <div style="font-size:13px;font-weight:600;color:var(--cream);margin-bottom:8px">Agentic AI created a new requirement overnight.</div>
-        <p>Until 2024, Copilot's file-level autocomplete was defensible for most enterprise use cases. The shift to agentic development — teams building and operating multi-agent frameworks — changed the requirement fundamentally. The AI coding tool now needs to understand entire systems, not individual files. Copilot wasn't built for this. Cursor was. Every month of delay is a month where the wrong tool becomes the standard.</p>
+        <div style="font-size:18px;font-weight:700;color:var(--cream);line-height:1.3;margin-bottom:10px">Software is now the<br>competitive moat.</div>
+        <p style="font-size:12px;line-height:1.65">Every company is a software company. AI raises the ceiling — but complex codebases, long ramp times, and review bottlenecks slow teams down exactly when speed determines who wins.</p>
       </div>
       <div class="card" style="border-left:3px solid var(--amber)">
         <div class="card-label" style="color:var(--amber)">Why Me</div>
-        <div style="font-size:13px;font-weight:600;color:var(--cream);margin-bottom:8px">Five years building enterprise motion from zero.</div>
-        <p>At Rubrik, I built the DACH enterprise motion from scratch — top-performing EMEA region in Q4 FY26. Before that, Zscaler DACH. I know how to run MEDDPICC in German procurement environments, navigate Betriebsrat, and build a territory from a blank sheet. As Founding AE, I'm not executing a playbook — I'm writing it. Every first logo, every POC design, every champion conversation becomes the institutional foundation for everything that follows.</p>
+        <div style="font-size:18px;font-weight:700;color:var(--cream);line-height:1.3;margin-bottom:10px">I've built this motion<br>before. From zero.</div>
+        <p style="font-size:12px;line-height:1.65">Rubrik DACH — #1 EMEA region Q4 FY26. Zscaler DACH before that. I know how to run MEDDPICC in German procurement, navigate Betriebsrat, and write the playbook as I execute it.</p>
       </div>
     </div>
 
@@ -979,41 +991,49 @@ Cursor · Founding AE</div>
         <div class="phase-n" style="color:var(--orange)">30</div>
         <div>
           <h3>Foundation, Intelligence & Early Field Presence</h3>
-          <p style="color:var(--muted)">Days 1–30 · Product immersion · PLG signal scan starts Week 2 · First outreach live Week 2 · First field meetings Week 3</p>
+          <p style="color:var(--muted)">Days 1–30 · Know the product cold · map the market · get in front of people</p>
         </div>
       </div>
-      <div class="phase-body">
-        <div class="phase-col-grid">
-          <div class="phase-col">
-            <h5>Week 1 — Product & Intelligence</h5>
-            <ul>
-              <li>Full Cursor product immersion — use it as a developer would across all core use cases (agentic, serverless, legacy refactor)</li>
-              <li>Master all 4 differentiators and live competitor positioning: Copilot, Claude Code, Windsurf</li>
-              <li>Complete all Cursor Enterprise security documentation — Privacy Mode brief ready to send</li>
-              <li>Build ICP tiering model for 30 DACH accounts: FSI, Automotive, SAP ecosystem, MedTech</li>
-              <li>Align with Timo Trunk on territory approach, quota structure, and first 30-day targets</li>
-            </ul>
+      <div class="phase-body" style="padding:8px 20px 4px">
+        <div class="pd-item" onclick="togglePD(this)">
+          <div class="pd-summary">
+            <span class="pd-arrow">›</span>
+            <span class="pd-week">Wk 1</span>
+            <span class="pd-text">Full product immersion + ICP model built across all 30 DACH accounts</span>
           </div>
-          <div class="phase-col">
-            <h5>Week 2 — PLG Signal Scan (Active)</h5>
-            <ul>
-              <li><strong>PLG scan all 30 accounts:</strong> Search GitHub orgs for .cursorrules files, Cursor references in issues/commits, engineering blogs mentioning Cursor</li>
-              <li><strong>LinkedIn shadow IT search:</strong> "Cursor" + each target company name — identify engineers already using Cursor personally</li>
-              <li>Scan job postings for AI coding tool mentions — Cursor in job specs = confirmed interest signal</li>
-              <li>Identify 2–3 confirmed shadow users per priority account and prioritise as first outreach</li>
-              <li>First personalised outreach sequences live by end of Week 2 — shadow users first, then bottom-up ICs</li>
-            </ul>
+          <div class="pd-detail">Use Cursor as a developer would across all core use cases (agentic, serverless, legacy refactor). Master all 4 differentiators and live competitor positioning: Copilot, Claude Code, Windsurf. Complete all Cursor Enterprise security documentation — Privacy Mode brief ready to send. Build ICP tiering model for 30 DACH accounts across FSI, Automotive, SAP ecosystem, MedTech. Align with Timo Trunk on territory approach, quota structure, and first 30-day targets.</div>
+        </div>
+        <div class="pd-item" onclick="togglePD(this)">
+          <div class="pd-summary">
+            <span class="pd-arrow">›</span>
+            <span class="pd-week">Wk 2</span>
+            <span class="pd-text">PLG signal scan live — GitHub, LinkedIn, job postings — across all 30 accounts</span>
           </div>
-          <div class="phase-col">
-            <h5>Week 3–4 — Field Presence & Community</h5>
-            <ul>
-              <li>Attend Munich developer meetup (Munich.js, TechTalk Munich, or AWS Community Day Munich) — in person, not virtual</li>
-              <li>Engage on Siemens, Allianz, BMW tech blogs and engineering channels — comment substantively on relevant engineering articles to build name recognition before outreach lands</li>
-              <li>Host or co-host first developer webinar: "Cursor for Agentic Platform Engineering" — record and promote via LinkedIn</li>
-              <li>First discovery calls scheduled — target 3 confirmed by Day 30</li>
-              <li>Partner outreach: contact AWS DACH FSI account team and GitHub DACH enterprise team for warm intro paths</li>
-            </ul>
+          <div class="pd-detail">Search GitHub orgs for .cursorrules files, Cursor references in issues/commits, engineering blogs mentioning Cursor. Run LinkedIn shadow IT search: "Cursor" + each target company name to identify engineers already using Cursor personally. Scan job postings for AI coding tool mentions — Cursor in job specs = confirmed interest signal. Identify 2–3 confirmed shadow users per priority account and flag as first outreach targets.</div>
+        </div>
+        <div class="pd-item" onclick="togglePD(this)">
+          <div class="pd-summary">
+            <span class="pd-arrow">›</span>
+            <span class="pd-week">Wk 2</span>
+            <span class="pd-text">First personalised outreach sequences live — shadow users first, then bottom-up ICs</span>
           </div>
+          <div class="pd-detail">Shadow users get a direct, specific message referencing their public tool usage and the governance path to enterprise deployment. Bottom-up ICs get insight-led outreach grounded in engineering challenges specific to their company. No generic sequences — every message references something real. Pain-Nugget-Ask structure on every touchpoint.</div>
+        </div>
+        <div class="pd-item" onclick="togglePD(this)">
+          <div class="pd-summary">
+            <span class="pd-arrow">›</span>
+            <span class="pd-week">Wk 3–4</span>
+            <span class="pd-text">Field presence in Munich — developer meetup + first community webinar</span>
+          </div>
+          <div class="pd-detail">Attend Munich developer meetup (Munich.js, TechTalk Munich, or AWS Community Day Munich) — in person, not virtual. Engage on Siemens, Allianz, BMW tech blogs and engineering channels to build name recognition before outreach lands. Host or co-host first developer webinar: "Cursor for Agentic Platform Engineering" — record and promote via LinkedIn.</div>
+        </div>
+        <div class="pd-item" onclick="togglePD(this)">
+          <div class="pd-summary">
+            <span class="pd-arrow">›</span>
+            <span class="pd-week">Wk 3–4</span>
+            <span class="pd-text">3 discovery calls booked by Day 30 · AWS DACH + GitHub DACH partner intros initiated</span>
+          </div>
+          <div class="pd-detail">Discovery calls prioritised from accounts with confirmed shadow users or PLG signals — not cold outreach converts. Contact AWS DACH FSI account team and GitHub DACH enterprise team for warm intro paths to Tier A accounts. Co-sell narrative developed and tested: Cursor as the missing development layer in AWS-native engineering orgs.</div>
         </div>
       </div>
       <div class="kpi-row">
@@ -1031,41 +1051,49 @@ Cursor · Founding AE</div>
         <div class="phase-n" style="color:var(--amber)">60</div>
         <div>
           <h3>Pipeline Creation & POC Design</h3>
-          <p style="color:var(--muted)">Days 31–60 · Active discovery · PLG-to-champion conversion · POC design · First €500k+ pipeline</p>
+          <p style="color:var(--muted)">Days 31–60 · Active discovery · shadow users → champions · first POC live</p>
         </div>
       </div>
-      <div class="phase-body">
-        <div class="phase-col-grid">
-          <div class="phase-col">
-            <h5>Discovery Excellence</h5>
-            <ul>
-              <li>Run 8–10 high-quality discovery calls — MEDDPICC qualification on every call, no exceptions</li>
-              <li>Convert confirmed shadow users into internal champions: provide one-pager, POC structure, and pre-filled security questionnaire</li>
-              <li>Map stakeholder influence for every active opportunity — identify economic buyer path from each champion</li>
-              <li>Lead with insight not pitch: "What does your team use for agentic development today?" surfaces the gap</li>
-              <li>Identify credible champion in top 3 accounts with confirmed POC authority</li>
-            </ul>
+      <div class="phase-body" style="padding:8px 20px 4px">
+        <div class="pd-item" onclick="togglePD(this)">
+          <div class="pd-summary">
+            <span class="pd-arrow">›</span>
+            <span class="pd-week">Disc</span>
+            <span class="pd-text">8–10 discovery calls — MEDDPICC qualification on every call, no exceptions</span>
           </div>
-          <div class="phase-col">
-            <h5>POC Design & PLG Conversion</h5>
-            <ul>
-              <li>Design pilot structure for first 2 accounts: 50 engineers, 4 weeks, 3 KPIs (PR merge velocity, developer NPS, adoption rate)</li>
-              <li>DACH-specific POC template: address GDPR, Betriebsrat (works council) requirements, and data residency from Day 1</li>
-              <li>Privacy Mode briefing deck ready in German for security/compliance review</li>
-              <li>PLG → enterprise conversion: shadow users become named pilot participants, not anonymous adopters</li>
-              <li>First POC agreement signed by Day 60</li>
-            </ul>
+          <div class="pd-detail">Every call runs full MEDDPICC: Metrics (what does faster shipping mean in €?), Economic Buyer (who signs?), Decision Criteria (what does good look like?), Decision Process (how do they buy?), Paper Process (legal, procurement timeline), Identify Pain (where does the team bleed velocity?), Champion (who wins internally when we win?), Competition (Copilot, Claude Code, or status quo?). No deal enters pipeline without confirmed champion and identified economic buyer path.</div>
+        </div>
+        <div class="pd-item" onclick="togglePD(this)">
+          <div class="pd-summary">
+            <span class="pd-arrow">›</span>
+            <span class="pd-week">PLG</span>
+            <span class="pd-text">Shadow users converted to internal champions — one-pager + POC structure + security Q ready to hand off</span>
           </div>
-          <div class="phase-col">
-            <h5>Field & Partner Activation</h5>
-            <ul>
-              <li>Attend and/or speak at second developer event (Zurich DevFest, AWS Community Day Frankfurt, or equivalent)</li>
-              <li>Second developer webinar: "AI coding tools for enterprise compliance environments" — targeting FSI/regulated industry engineers specifically</li>
-              <li>AWS DACH warm intro path activated — co-sell narrative for Tier A DACH accounts (Allianz, BMW, Deutsche Bank, Siemens) refined and ready</li>
-              <li>GitHub DACH enterprise team: Cursor complement-to-Copilot pitch tested and refined</li>
-              <li>First DACH partner referral pipeline opportunity identified</li>
-            </ul>
+          <div class="pd-detail">Each confirmed shadow user gets: a personalised one-pager positioning Cursor Enterprise vs their current Pro account, a pre-structured POC framework they can bring to their manager, and a pre-filled security questionnaire addressing GDPR, Betriebsrat, and data residency — removing every internal barrier to getting the next meeting. Goal: shadow user becomes internal champion before we ever talk to their VP.</div>
+        </div>
+        <div class="pd-item" onclick="togglePD(this)">
+          <div class="pd-summary">
+            <span class="pd-arrow">›</span>
+            <span class="pd-week">POC</span>
+            <span class="pd-text">First 2 POCs designed: 50 engineers · 4 weeks · 3 measurable KPIs</span>
           </div>
+          <div class="pd-detail">Pilot structure: 50 engineers, 4 weeks, 3 pre-agreed KPIs — PR merge velocity (cycle time reduction), developer NPS (weekly pulse survey), and adoption rate (DAU/licensed seats). DACH-specific POC template addresses GDPR, Betriebsrat (works council) requirements, and data residency from Day 1 — not as an afterthought. Privacy Mode briefing deck available in German for security and compliance review. First POC agreement signed by Day 60.</div>
+        </div>
+        <div class="pd-item" onclick="togglePD(this)">
+          <div class="pd-summary">
+            <span class="pd-arrow">›</span>
+            <span class="pd-week">Field</span>
+            <span class="pd-text">Second developer event + webinar: "AI coding tools for regulated enterprise environments"</span>
+          </div>
+          <div class="pd-detail">Attend or speak at Zurich DevFest, AWS Community Day Frankfurt, or equivalent. Second developer webinar targets FSI and regulated industry engineers specifically — GDPR, audit trails, data residency framing. This is the content that makes Cursor credible to compliance-conscious DACH buyers, not just developer-community fans.</div>
+        </div>
+        <div class="pd-item" onclick="togglePD(this)">
+          <div class="pd-summary">
+            <span class="pd-arrow">›</span>
+            <span class="pd-week">Partner</span>
+            <span class="pd-text">AWS DACH co-sell narrative active · GitHub DACH complement-to-Copilot pitch tested</span>
+          </div>
+          <div class="pd-detail">AWS DACH FSI account team: warm intro paths activated for Tier A accounts (Allianz, BMW, Deutsche Bank, Siemens). Cursor as the AI development layer inside AWS-native engineering orgs — complements the infrastructure they already run. GitHub DACH enterprise team: Cursor complement-to-Copilot pitch refined and tested — the narrative is "Copilot for suggestions, Cursor for tasks." First DACH partner referral pipeline opportunity identified.</div>
         </div>
       </div>
       <div class="kpi-row">
@@ -1083,41 +1111,49 @@ Cursor · Founding AE</div>
         <div class="phase-n" style="color:var(--teal)">90</div>
         <div>
           <h3>First Logos, Expansion & DACH Playbook</h3>
-          <p style="color:var(--muted)">Days 61–90 · First deal close · PLG → enterprise motion documented · DACH playbook ready for scale</p>
+          <p style="color:var(--muted)">Days 61–90 · First deal closed · pipeline at 3x · motion documented for scale</p>
         </div>
       </div>
-      <div class="phase-body">
-        <div class="phase-col-grid">
-          <div class="phase-col">
-            <h5>First Logos</h5>
-            <ul>
-              <li>Close first DACH enterprise deal — target: 100+ seat agreement from Tier A account (Allianz, BMW, Deutsche Bank, or Swiss Re)</li>
-              <li>PLG → enterprise expansion: shadow users become the reference story that unlocks the enterprise procurement motion</li>
-              <li>First DACH customer reference willing to speak to next prospect — locked in with deal terms</li>
-              <li>Second deal in late-stage evaluation</li>
-              <li>Report to Timo Trunk: first logo story with PLG origin, deal metrics, and what the DACH motion looks like</li>
-            </ul>
+      <div class="phase-body" style="padding:8px 20px 4px">
+        <div class="pd-item" onclick="togglePD(this)">
+          <div class="pd-summary">
+            <span class="pd-arrow">›</span>
+            <span class="pd-week">Logo</span>
+            <span class="pd-text">First DACH enterprise deal closed — 100+ seats, Tier A account</span>
           </div>
-          <div class="phase-col">
-            <h5>Systematic Pipeline</h5>
-            <ul>
-              <li>3x quota pipeline coverage — disciplined qualification, no vanity pipeline</li>
-              <li>PLG signal scan running continuously: new shadow users identified weekly from GitHub and LinkedIn</li>
-              <li>Active outreach sequences across all 30 accounts — personalised cadence based on PLG signal, not generic spray</li>
-              <li>Digital native accounts (fintechs, tech-forward startups in DACH) activated as fast-close reference logos alongside enterprise motion</li>
-              <li>First partner referral deal (AWS or GitHub DACH introduction) in pipeline</li>
-            </ul>
+          <div class="pd-detail">Target accounts: Allianz, BMW, Deutsche Bank, or Swiss Re. PLG → enterprise narrative: shadow users become the reference story that unlocks enterprise procurement. First DACH customer reference willing to speak to next prospect — locked in as a deal term. Second deal in late-stage evaluation. Report to Timo Trunk: first logo story with PLG origin, deal metrics, and what the replicable DACH motion looks like.</div>
+        </div>
+        <div class="pd-item" onclick="togglePD(this)">
+          <div class="pd-summary">
+            <span class="pd-arrow">›</span>
+            <span class="pd-week">Pipe</span>
+            <span class="pd-text">3x quota pipeline — disciplined qualification, no vanity deals</span>
           </div>
-          <div class="phase-col">
-            <h5>DACH Playbook</h5>
-            <ul>
-              <li>Document all DACH-specific GTM learnings: PLG signal sources, shadow user conversion rate, procurement timelines, GDPR/Betriebsrat objection handling</li>
-              <li>PLG → enterprise conversion rate documented: what % of shadow users convert to POC participants, what message works</li>
-              <li>First German-language positioning deck ready for VP-level meetings</li>
-              <li>Third developer webinar: "Cursor customer story — how [first logo] deployed across 100+ engineers"</li>
-              <li>Feedback loop to product team: top 5 DACH enterprise feature requests</li>
-            </ul>
+          <div class="pd-detail">3x coverage is the floor, not the ceiling — but quality over quantity. No deal in pipeline without confirmed champion, identified economic buyer, and a next step with a date. PLG signal scan running continuously: new shadow users identified weekly from GitHub and LinkedIn. Digital native accounts (Personio, Celonis, Scalable Capital, Trade Republic) activated as fast-close reference logos alongside enterprise motion — shorter sales cycles, stronger PLG signals, design partner potential.</div>
+        </div>
+        <div class="pd-item" onclick="togglePD(this)">
+          <div class="pd-summary">
+            <span class="pd-arrow">›</span>
+            <span class="pd-week">PLG</span>
+            <span class="pd-text">PLG → enterprise conversion documented and repeatable — shadow user → logo in writing</span>
           </div>
+          <div class="pd-detail">Document the full conversion journey: PLG signal detected → shadow user identified → outreach sent → champion converted → POC designed → enterprise deal. Conversion rate benchmarked: what % of shadow users convert to POC participants? What message worked? What objections came up at which stage? This is the DACH GTM playbook in its first working draft — built from real data, not hypothesis.</div>
+        </div>
+        <div class="pd-item" onclick="togglePD(this)">
+          <div class="pd-summary">
+            <span class="pd-arrow">›</span>
+            <span class="pd-week">Partner</span>
+            <span class="pd-text">First partner referral deal in pipeline · AWS or GitHub DACH introduction converted</span>
+          </div>
+          <div class="pd-detail">At least one deal in pipeline sourced through AWS DACH or GitHub DACH enterprise team. Co-sell motion proven: Cursor as the AI development layer inside AWS-native orgs, or as the task-completion layer alongside GitHub Copilot. Partner relationship documented for handoff to any future DACH team expansion.</div>
+        </div>
+        <div class="pd-item" onclick="togglePD(this)">
+          <div class="pd-summary">
+            <span class="pd-arrow">›</span>
+            <span class="pd-week">Book</span>
+            <span class="pd-text">DACH playbook delivered — objections, timelines, PLG signals, German-language assets ready</span>
+          </div>
+          <div class="pd-detail">Playbook covers: PLG signal sources and conversion rates for DACH, procurement timelines by vertical (FSI runs slower than auto), GDPR and Betriebsrat objection handling scripts, German-language Privacy Mode brief, VP-level positioning deck in German, and top 5 DACH enterprise feature requests fed back to product. Third developer webinar: "Cursor customer story — how [first logo] deployed across 100+ engineers."</div>
         </div>
       </div>
       <div class="kpi-row">
@@ -1130,7 +1166,7 @@ Cursor · Founding AE</div>
     </div>
 
     <hr class="section-hr">
-    <div class="page-header"><h2>DACH Focus Account Universe</h2><p>30 accounts · Southern Germany + Switzerland · Priority verticals · Digital native additions for fast PLG motion</p></div>
+    <div class="page-header"><h2>DACH Focus Accounts</h2><p>30 accounts · Southern Germany + Switzerland · Priority verticals · Digital native additions for fast PLG motion</p></div>
     <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px">
       <div class="card">
         <div class="card-label" style="color:var(--orange)">Tier A — Prime Enterprise (6)</div>
@@ -1159,6 +1195,11 @@ Cursor · Founding AE</div>
 </main>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// PROGRESSIVE DISCLOSURE
+function togglePD(el) {
+  el.classList.toggle('open');
+}
+
 // NAVIGATION
 function toggleMenu() {
   document.querySelector('.sidebar').classList.toggle('open');
