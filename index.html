@@ -465,26 +465,54 @@ hr.section-hr{border:none;border-top:1px solid var(--border);margin:24px 0}
 <!-- ═══════════ AI ACCOUNT BRIEF ═══════════ -->
 <section id="aibrief" class="section">
   <div class="hero" style="padding-bottom:28px">
-    <div class="hero-tag"><span class="hero-tag-dot"></span>AI-Generated · DACH Account Intelligence</div>
+    <div class="hero-tag"><span class="hero-tag-dot"></span>DACH Account Intelligence</div>
     <h1 id="aibrief-hero-title">Account Brief</h1>
-    <p class="hero-sub" id="aibrief-hero-sub">Generating account intelligence...</p>
+    <p class="hero-sub" id="aibrief-hero-sub">Loading account intelligence...</p>
   </div>
   <div class="page-content">
+    <!-- Stats row -->
     <div id="aibrief-stats" style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;margin-bottom:18px"></div>
-    <div class="tabs" id="aibrief-tabs">
-      <div class="tab active" onclick="switchTab('aibrief','usecases')" style="color:var(--orange)">Use Cases</div>
-      <div class="tab" onclick="switchTab('aibrief','medd')" style="color:var(--orange)">MEDDPICC</div>
-      <div class="tab" onclick="switchTab('aibrief','radar')" style="color:var(--orange)">Tech Context</div>
-    </div>
-    <div id="aibrief-usecases" class="tab-panel active">
-      <div id="aibrief-uc-nav" style="display:flex;gap:6px;margin-bottom:20px;flex-wrap:wrap"></div>
-      <div id="aibrief-uc-panels"></div>
-    </div>
-    <div id="aibrief-medd" class="tab-panel">
-      <div id="aibrief-medd-grid" class="medd-grid"></div>
-    </div>
-    <div id="aibrief-radar" class="tab-panel">
-      <div id="aibrief-radar-content"></div>
+    <!-- 2-col layout: tabs left, persistent right panel -->
+    <div style="display:grid;grid-template-columns:3fr 1fr;gap:16px;align-items:start">
+      <!-- LEFT: tabs + panels -->
+      <div>
+        <div class="tabs" id="aibrief-tabs">
+          <div class="tab active" onclick="switchTab('aibrief','usecases')" style="color:var(--orange)">Use Cases</div>
+          <div class="tab" onclick="switchTab('aibrief','medd')" style="color:var(--orange)">MEDDPICC</div>
+          <div class="tab" onclick="switchTab('aibrief','radar')" style="color:var(--orange)">Tech Context</div>
+          <div class="tab" onclick="switchTab('aibrief','techradar')" style="color:var(--orange)">Tech Radar</div>
+          <div class="tab" onclick="switchTab('aibrief','landscape')" style="color:var(--orange)">AI Landscape</div>
+        </div>
+        <div id="aibrief-usecases" class="tab-panel active">
+          <div id="aibrief-uc-nav" style="display:flex;gap:6px;margin-bottom:20px;flex-wrap:wrap"></div>
+          <div id="aibrief-uc-panels"></div>
+        </div>
+        <div id="aibrief-medd" class="tab-panel">
+          <div id="aibrief-medd-grid" class="medd-grid"></div>
+        </div>
+        <div id="aibrief-radar" class="tab-panel">
+          <div id="aibrief-radar-content"></div>
+        </div>
+        <div id="aibrief-techradar" class="tab-panel">
+          <div style="font-size:12px;color:var(--muted);margin-bottom:14px;line-height:1.6">Engineering stack mapped across four quadrants. Based on public job postings, engineering blog, GitHub repos, and confirmed technology partnerships.</div>
+          <div style="display:flex;align-items:flex-start;gap:20px">
+            <canvas id="aibrief-radar-canvas" width="440" height="440" style="flex-shrink:0;border-radius:8px"></canvas>
+            <div id="aibrief-radar-legend" style="flex:1;font-size:11px;max-height:440px;overflow-y:auto"></div>
+          </div>
+        </div>
+        <div id="aibrief-landscape" class="tab-panel">
+          <div style="font-size:12px;color:var(--muted);margin-bottom:8px;line-height:1.6"><strong style="color:var(--cream)">X-axis: Enterprise completeness</strong> · <strong style="color:var(--cream)">Y-axis: AI coding capability</strong>. Tool positioning adjusted for this account's stack and procurement context.</div>
+          <div style="display:flex;gap:16px;align-items:flex-start">
+            <canvas id="aibrief-quadrant-canvas" width="400" height="400" style="flex-shrink:0;border-radius:8px"></canvas>
+            <div id="aibrief-quadrant-details" style="flex:1"></div>
+          </div>
+        </div>
+      </div>
+      <!-- RIGHT: persistent signals + urgency panel -->
+      <div id="aibrief-right-panel">
+        <div id="aibrief-signals-panel"></div>
+        <div id="aibrief-urgency-panel" style="margin-top:14px"></div>
+      </div>
     </div>
   </div>
 </section>
@@ -742,7 +770,7 @@ hr.section-hr{border:none;border-top:1px solid var(--border);margin:24px 0}
           <div style="font-size:12px;color:var(--muted);margin-bottom:14px;line-height:1.6">Capital One's engineering stack mapped across four quadrants. Based on public job postings, GitHub repos, engineering blog (capitalone.com/tech), and AWS case studies. Ring assignment reflects inferred adoption maturity — not confirmed internal data.</div>
           <div style="display:flex;align-items:flex-start;gap:20px">
             <canvas id="techRadarCanvas" width="480" height="480" style="flex-shrink:0;border-radius:8px"></canvas>
-            <div id="radarLegend" style="flex:1;font-size:11px"></div>
+            <div id="radarLegend" style="flex:1;font-size:11px;max-height:480px;overflow-y:auto"></div>
           </div>
         </div>
 
@@ -1357,6 +1385,53 @@ const DACH_BRIEFS = {
       {category:'Dev Tooling & Source Control',items:['GitHub Enterprise — confirmed source control','JoyCode — internal AI coding assistant (file-level, not codebase-aware)','Jenkins + Artifactory CI/CD pipeline at automotive scale']},
       {category:'AI / ML & Automotive Software',items:['Neue Klasse AI platform: autonomous driving, predictive maintenance, in-car AI','TechWorks joint ventures with partners for embedded software','VS Code confirmed as primary IDE across software engineering org']},
       {category:'Where Cursor Fits',items:['VS Code native — zero friction adoption for 30,000 engineers','Fills JoyCode\'s codebase context gap without replacing it','Privacy Mode clears Betriebsrat and GDPR requirements from day one']}
+    ],
+    signals:[
+      {l:'Engineering scale (30,000+ SW engineers)',        score:10, confirmed:true},
+      {l:'Software = core business (Neue Klasse platform)', score:10, confirmed:true},
+      {l:'Developer productivity mandate (JoyCode 2024)',   score:9,  confirmed:true},
+      {l:'Urgency driver (Neue Klasse launch 2025)',        score:9,  confirmed:true},
+      {l:'Legacy modernisation (AUTOSAR → cloud-native)',   score:8,  confirmed:true},
+      {l:'PLG signal detectable (VS Code + GitHub)',        score:7,  confirmed:true},
+      {l:'Public engineering culture (BMW Tech blog)',      score:7,  confirmed:true},
+      {l:'Copilot deployed (Azure EA possible — unconfirmed)', score:4, confirmed:false},
+      {l:'Non-Microsoft cloud primary (AWS + Azure split)', score:4,  confirmed:false},
+    ],
+    radarData:{
+      quadrants:[{name:'Languages & Frameworks',color:'#E8764A'},{name:'Infrastructure & Cloud',color:'#0D9E75'},{name:'Data, AI & ML',color:'#C8A842'},{name:'Tools & Practices',color:'#6B7EBB'}],
+      rings:['ADOPT','TRIAL','ASSESS','HOLD'],
+      entries:[
+        {q:0,r:0,label:'C++',        note:'Core embedded — vehicle control systems confirmed'},
+        {q:0,r:0,label:'Python',     note:'AI/ML pipelines + backend services'},
+        {q:0,r:0,label:'Java',       note:'Backend microservices — job postings confirmed'},
+        {q:0,r:0,label:'TypeScript', note:'Web + cloud services'},
+        {q:0,r:1,label:'Rust',       note:'Emerging for safety-critical systems'},
+        {q:0,r:1,label:'Kotlin',     note:'Android Automotive + JVM services'},
+        {q:0,r:2,label:'MATLAB',     note:'Simulation — being replaced by modern stack'},
+        {q:1,r:0,label:'AWS',        note:'Primary cloud — confirmed across engineering postings'},
+        {q:1,r:0,label:'Azure',      note:'Secondary + M365 enterprise suite'},
+        {q:1,r:0,label:'Kubernetes', note:'Container orchestration across all hubs'},
+        {q:1,r:1,label:'BMW Cloud',  note:'Internal IDP for automotive workloads'},
+        {q:1,r:2,label:'AUTOSAR',    note:'Legacy vehicle OS layer — being abstracted'},
+        {q:2,r:0,label:'Neue Klasse AI',note:'Autonomous driving + predictive AI platform'},
+        {q:2,r:1,label:'JoyCode',    note:'Internal AI coding assistant — mandate 2024'},
+        {q:2,r:1,label:'TensorFlow', note:'ML training — confirmed in job postings'},
+        {q:2,r:2,label:'LLM Integration',note:'BMW Intelligent Personal Assistant — in-car AI'},
+        {q:3,r:0,label:'GitHub Ent.',note:'Source control — confirmed'},
+        {q:3,r:0,label:'VS Code',    note:'Primary IDE — confirmed across engineering org'},
+        {q:3,r:0,label:'Jenkins',    note:'CI/CD pipeline at automotive scale'},
+        {q:3,r:1,label:'Cursor',     note:'Shadow usage likely — VS Code culture + PLG signal'},
+        {q:3,r:2,label:'Copilot',    note:'Possible via Azure EA — not confirmed'},
+      ]
+    },
+    mqTools:[
+      {name:'GitHub Copilot',short:'Copilot',x:0.75,y:0.38,color:'#0D9E75',quadrant:'Challenger',enterprise:'★★★★★',aiCap:'★★☆☆☆',note:'Azure EA possible but unconfirmed at BMW — not bundled into an existing contract. If deployed, per-seat not sunk-cost. Merit-based displacement argument is clean. File-level context fails for Neue Klasse multi-domain codebase.'},
+      {name:'Cursor',short:'Cursor',x:0.70,y:0.78,color:'#E8764A',quadrant:'Best Fit for BMW',enterprise:'★★★☆☆',aiCap:'★★★★☆',note:'VS Code native — zero friction for 30,000 BMW engineers. Full codebase context across embedded + cloud + AI layers. Privacy Mode clears Betriebsrat. Complements JoyCode rather than competing with it. The winning choice for BMW.'},
+      {name:'JoyCode (Internal)',short:'JoyCode',x:0.55,y:0.30,color:'#C8A842',quadrant:'Internal — File Level',enterprise:'★★★★☆',aiCap:'★★☆☆☆',note:'BMW\'s internal AI coding assistant — mandate for all engineers. File-level context only. Strong governance (fully internal) but limited capability for Neue Klasse system-level work. Cursor is the complementary layer, not a replacement.'},
+      {name:'Claude Code',short:'Claude Code',x:0.45,y:0.88,color:'#C8A842',quadrant:'Highest Raw AI',enterprise:'★★★☆☆',aiCap:'★★★★★',note:'Terminal-only — engineers must leave VS Code. Anthropic model lock-in conflicts with BMW\'s multi-model strategy. Not IDE-native. Raw AI capability is best-in-class but workflow friction is high for an org with 30,000 VS Code users.'},
+      {name:'Amazon Q',short:'Amazon Q',x:0.78,y:0.28,color:'#6B7EBB',quadrant:'AWS-Only',enterprise:'★★★★☆',aiCap:'★★☆☆☆',note:'Relevant for BMW\'s AWS workloads but limited outside the AWS ecosystem. BMW is multi-cloud deliberately — Amazon Q creates the vendor dependency they\'ve structured their architecture to avoid.'},
+      {name:'Windsurf',short:'Windsurf',x:0.50,y:0.68,color:'#888784',quadrant:'Visionary',enterprise:'★★☆☆☆',aiCap:'★★★★☆',note:'Strong AI capability but no enterprise security certifications. No Betriebsrat-ready documentation. Not viable for BMW\'s governance requirements.'},
+      {name:'Tabnine',short:'Tabnine',x:0.90,y:0.16,color:'#5A5A56',quadrant:'Air-Gap Only',enterprise:'★★★★★',aiCap:'★☆☆☆☆',note:'Air-gapped deployment — relevant for BMW\'s most sensitive IP environments. Weakest AI capability. Not competitive for Neue Klasse engineering velocity requirement.'},
     ]
   },
 
@@ -1400,6 +1475,52 @@ const DACH_BRIEFS = {
       {category:'Dev Tooling & Source Control',items:['GitHub Enterprise — confirmed source control across engineering org','GitHub Copilot — bundled via Azure EA, deployed across engineering teams','VS Code primary IDE + JetBrains for some legacy teams']},
       {category:'AI / ML & Industrial Platform',items:['Industrial Copilot — AI assistant for factory operators, scaling 2025','Siemens Xcelerator — open digital business platform with integrated AI','Mindsphere (now Siemens Xcelerator IoT) — industrial IoT and analytics layer']},
       {category:'Where Cursor Fits',items:['VS Code native — installs alongside existing Copilot without conflict','Fills Copilot\'s codebase context gap for complex Xcelerator multi-service work','Betriebsrat-ready privacy architecture — clears the primary governance barrier']}
+    ],
+    signals:[
+      {l:'Engineering scale (20,000+ SW engineers)',           score:10, confirmed:true},
+      {l:'Software = core business (40% revenue digital)',     score:10, confirmed:true},
+      {l:'Developer productivity mandate (Busch AI mandate)',  score:9,  confirmed:true},
+      {l:'Urgency driver (Industrial Copilot scaling 2025)',   score:9,  confirmed:true},
+      {l:'Legacy modernisation (20+ acquisitions to integrate)',score:8,  confirmed:true},
+      {l:'Copilot deployed (bundled via Azure EA)',            score:8,  confirmed:true},
+      {l:'PLG signal detectable (VS Code + github.com/siemens)',score:7, confirmed:true},
+      {l:'Public engineering culture (Siemens Tech blog)',     score:6,  confirmed:true},
+      {l:'Non-Microsoft cloud primary',                        score:2,  confirmed:false},
+    ],
+    radarData:{
+      quadrants:[{name:'Languages & Frameworks',color:'#E8764A'},{name:'Infrastructure & Cloud',color:'#0D9E75'},{name:'Data, AI & ML',color:'#C8A842'},{name:'Tools & Practices',color:'#6B7EBB'}],
+      rings:['ADOPT','TRIAL','ASSESS','HOLD'],
+      entries:[
+        {q:0,r:0,label:'Java',        note:'Core backend — confirmed across all Siemens software orgs'},
+        {q:0,r:0,label:'Python',      note:'AI/ML + data engineering — Industrial Copilot stack'},
+        {q:0,r:0,label:'C++',         note:'Industrial control systems + embedded SCADA'},
+        {q:0,r:0,label:'TypeScript',  note:'Xcelerator web platform + cloud APIs'},
+        {q:0,r:1,label:'Go',          note:'Microservices — confirmed in Xcelerator postings'},
+        {q:0,r:2,label:'Scala',        note:'Legacy data pipelines from older acquisitions'},
+        {q:1,r:0,label:'Azure',        note:'Primary cloud — deep M365 + OpenAI partnership'},
+        {q:1,r:0,label:'Kubernetes',   note:'Container orchestration across Xcelerator platform'},
+        {q:1,r:1,label:'AWS',          note:'Secondary cloud for specific workloads'},
+        {q:1,r:1,label:'Industrial Edge',note:'Siemens proprietary edge computing for factory AI'},
+        {q:1,r:2,label:'On-prem',      note:'Legacy factory systems — being migrated to edge/cloud'},
+        {q:2,r:0,label:'Industrial Copilot',note:'AI assistant for factory operators — scaling 2025'},
+        {q:2,r:0,label:'Xcelerator AI', note:'Integrated AI across PLM, MES, SCADA platform'},
+        {q:2,r:1,label:'MindSphere',    note:'Industrial IoT analytics — now part of Xcelerator'},
+        {q:2,r:1,label:'LLM APIs',      note:'OpenAI + Azure AI integration across products'},
+        {q:2,r:2,label:'Custom ML',     note:'Domain-specific models for industrial processes'},
+        {q:3,r:0,label:'GitHub Ent.',   note:'Source control — confirmed'},
+        {q:3,r:0,label:'VS Code',       note:'Primary IDE confirmed across engineering org'},
+        {q:3,r:0,label:'Copilot',       note:'Deployed via Azure EA — confirmed adoption'},
+        {q:3,r:1,label:'Cursor',        note:'Shadow usage probable — VS Code culture, Munich tech scene'},
+        {q:3,r:2,label:'JetBrains',     note:'Legacy teams — being standardised on VS Code'},
+      ]
+    },
+    mqTools:[
+      {name:'GitHub Copilot',short:'Copilot',x:0.88,y:0.42,color:'#0D9E75',quadrant:'Bundled Incumbent',enterprise:'★★★★★',aiCap:'★★☆☆☆',note:'Deployed via Azure EA — bundled into existing M365 contract. Commercial displacement is harder. Product argument is clear: Copilot cannot navigate Xcelerator\'s multi-service codebase. Cursor positioned as complement — adds what Copilot can\'t do.'},
+      {name:'Cursor',short:'Cursor',x:0.68,y:0.78,color:'#E8764A',quadrant:'Best Fit for Siemens',enterprise:'★★★☆☆',aiCap:'★★★★☆',note:'VS Code native — installs alongside Copilot without displacing it. Full codebase context for Xcelerator multi-service architecture. Betriebsrat-ready Privacy Mode. The layer that handles what Copilot can\'t.'},
+      {name:'Claude Code',short:'Claude Code',x:0.44,y:0.88,color:'#C8A842',quadrant:'Highest Raw AI',enterprise:'★★★☆☆',aiCap:'★★★★★',note:'Terminal-only — engineers leave VS Code entirely. Anthropic lock-in conflicts with Siemens\'s Azure/Microsoft alignment. Betriebsrat approval uncertain for terminal-based tool. High capability, wrong workflow.'},
+      {name:'Amazon Q',short:'Amazon Q',x:0.72,y:0.26,color:'#6B7EBB',quadrant:'Limited Relevance',enterprise:'★★★★☆',aiCap:'★★☆☆☆',note:'Azure-primary organisation. Amazon Q creates AWS dependency directly conflicting with Siemens\'s Microsoft strategic partnership. Not relevant.'},
+      {name:'Windsurf',short:'Windsurf',x:0.50,y:0.68,color:'#888784',quadrant:'Visionary',enterprise:'★★☆☆☆',aiCap:'★★★★☆',note:'No enterprise certs. No Betriebsrat documentation. No EU data residency. Not viable for Siemens\'s industrial IP governance.'},
+      {name:'Tabnine',short:'Tabnine',x:0.92,y:0.16,color:'#5A5A56',quadrant:'Air-Gap Only',enterprise:'★★★★★',aiCap:'★☆☆☆☆',note:'Air-gapped option for most sensitive Siemens IP. Weakest AI capability — not viable for Xcelerator engineering velocity.'},
     ]
   },
 
@@ -1443,6 +1564,51 @@ const DACH_BRIEFS = {
       {category:'Dev Tooling & Source Control',items:['GitHub Enterprise — confirmed source control','GitHub Copilot — likely bundled via Azure EA','VS Code primary IDE across engineering org']},
       {category:'AI / ML & Insurance Platform',items:['OpenAI partnership — GPT models embedded across claims, underwriting, customer service','Azure AI services — cognitive search, document intelligence for claims processing','Allianz internal AI models — actuarial risk models, fraud detection, claims scoring']},
       {category:'Where Cursor Fits',items:['VS Code native — zero friction adoption alongside existing Copilot','TPRM and BaFin-ready: Privacy Mode + SOC 2 + ZDR clears FSI governance bar','Fills Copilot\'s codebase context gap for complex insurance platform integration work']}
+    ],
+    signals:[
+      {l:'Engineering scale (12,000+ tech & data engineers)',  score:9,  confirmed:true},
+      {l:'Software = core business (AI-native insurance)',     score:9,  confirmed:true},
+      {l:'Developer productivity mandate (Bäte AI mandate)',   score:9,  confirmed:true},
+      {l:'Urgency driver (OpenAI partnership + EU AI Act)',    score:10, confirmed:true},
+      {l:'Legacy modernisation (30yr claims platform)',        score:8,  confirmed:true},
+      {l:'Copilot deployed (likely via Azure EA)',             score:6,  confirmed:false},
+      {l:'PLG signal detectable (VS Code + tech community)',   score:6,  confirmed:true},
+      {l:'Public engineering culture (Allianz Tech blog)',     score:5,  confirmed:true},
+      {l:'Non-Microsoft cloud primary',                        score:2,  confirmed:false},
+    ],
+    radarData:{
+      quadrants:[{name:'Languages & Frameworks',color:'#E8764A'},{name:'Infrastructure & Cloud',color:'#0D9E75'},{name:'Data, AI & ML',color:'#C8A842'},{name:'Tools & Practices',color:'#6B7EBB'}],
+      rings:['ADOPT','TRIAL','ASSESS','HOLD'],
+      entries:[
+        {q:0,r:0,label:'Java',        note:'Core backend — insurance platform confirmed'},
+        {q:0,r:0,label:'Python',      note:'AI/ML + data engineering — claims AI stack'},
+        {q:0,r:0,label:'TypeScript',  note:'Customer-facing platforms + APIs'},
+        {q:0,r:1,label:'Scala',       note:'Data pipelines — actuarial and risk models'},
+        {q:0,r:1,label:'Go',          note:'Microservices — confirmed in tech postings'},
+        {q:0,r:3,label:'COBOL',       note:'HOLD — legacy core insurance systems being migrated'},
+        {q:1,r:0,label:'Azure',       note:'Primary cloud — OpenAI partnership + M365 EA'},
+        {q:1,r:0,label:'Kubernetes',  note:'Container orchestration — confirmed postings'},
+        {q:1,r:1,label:'AWS',         note:'Secondary cloud for specific workloads'},
+        {q:1,r:1,label:'Allianz Tech GmbH',note:'Internal IT org — Munich-based DACH infrastructure'},
+        {q:2,r:0,label:'OpenAI GPT',  note:'Strategic partnership — claims, underwriting, service'},
+        {q:2,r:0,label:'Azure AI',    note:'Cognitive search + document intelligence for claims'},
+        {q:2,r:1,label:'Internal ML', note:'Actuarial risk models + fraud detection in production'},
+        {q:2,r:1,label:'Claims AI',   note:'Automated assessment platform — scaling 2025'},
+        {q:2,r:2,label:'Vector DBs',  note:'RAG for insurance document retrieval — emerging'},
+        {q:3,r:0,label:'GitHub Ent.', note:'Source control — confirmed'},
+        {q:3,r:0,label:'VS Code',     note:'Primary IDE confirmed across engineering org'},
+        {q:3,r:1,label:'Copilot',     note:'Likely deployed via Azure EA — not confirmed'},
+        {q:3,r:1,label:'Cursor',      note:'Shadow usage probable — Munich FSI tech community'},
+        {q:3,r:2,label:'Tabnine',     note:'Evaluated for air-gapped compliance — lower capability'},
+      ]
+    },
+    mqTools:[
+      {name:'GitHub Copilot',short:'Copilot',x:0.86,y:0.40,color:'#0D9E75',quadrant:'Likely Bundled',enterprise:'★★★★★',aiCap:'★★☆☆☆',note:'Likely deployed via Azure EA alongside OpenAI partnership. Deep Microsoft alignment makes this the path of least resistance. Product limitation: file-level context cannot navigate Allianz\'s 30-year claims platform architecture. Cursor is the complementary layer.'},
+      {name:'Cursor',short:'Cursor',x:0.72,y:0.76,color:'#E8764A',quadrant:'Best Fit for Allianz',enterprise:'★★★☆☆',aiCap:'★★★★☆',note:'VS Code native alongside existing Copilot. Privacy Mode + SOC 2 + ZDR clears BaFin and TPRM requirements. Full codebase context for complex insurance platform integration — the exact gap Copilot leaves in FSI environments.'},
+      {name:'Claude Code',short:'Claude Code',x:0.44,y:0.88,color:'#C8A842',quadrant:'Highest Raw AI',enterprise:'★★★☆☆',aiCap:'★★★★★',note:'Terminal-only conflicts with Allianz\'s VS Code standard. Anthropic lock-in on an Azure/OpenAI-aligned stack. TPRM approval path unclear for terminal-based tool touching FSI code. High capability, wrong governance profile for BaFin environment.'},
+      {name:'Amazon Q',short:'Amazon Q',x:0.76,y:0.26,color:'#6B7EBB',quadrant:'AWS Secondary',enterprise:'★★★★☆',aiCap:'★★☆☆☆',note:'Relevant for Allianz\'s AWS secondary workloads but limited outside that ecosystem. Azure is primary — Amazon Q creates competing vendor dependency.'},
+      {name:'Windsurf',short:'Windsurf',x:0.48,y:0.66,color:'#888784',quadrant:'Visionary',enterprise:'★★☆☆☆',aiCap:'★★★★☆',note:'No SOC 2, no BaFin-ready documentation, no EU data residency commitment. Not viable for regulated FSI environment requiring TPRM sign-off.'},
+      {name:'Tabnine',short:'Tabnine',x:0.93,y:0.16,color:'#5A5A56',quadrant:'Air-Gap Only',enterprise:'★★★★★',aiCap:'★☆☆☆☆',note:'Only viable option for Allianz\'s most sensitive claims and actuarial code environments where no data can leave the perimeter. Weakest AI capability — not relevant for OpenAI partnership engineering velocity.'},
     ]
   }
 };
@@ -1550,6 +1716,50 @@ function renderBrief(d) {
     (d.quote ? '<div style="margin-top:14px;border-left:3px solid var(--orange);padding:10px 14px;background:var(--orange3);border-radius:0 4px 4px 0"><div style="font-size:13px;color:var(--cream);font-style:italic;margin-bottom:6px">' + d.quote + '</div><div style="font-size:10px;color:var(--orange);font-weight:600">— ' + d.quoteExec + '</div></div>' : '') +
     '</div>';
 
+  // Signal scores mini panel (top right)
+  if (d.signals) {
+    const total = d.signals.reduce((sum, s) => sum + s.score, 0);
+    const max = d.signals.length * 10;
+    const pct = Math.round(total / max * 100);
+    // Color by score (same logic as Capital One signals)
+    const sigColor = s => {
+      if (!s.confirmed) return 'var(--dim)';
+      if (s.score >= 9) return 'var(--orange)';
+      if (s.score >= 7) return 'var(--amber)';
+      if (s.score >= 5) return 'var(--teal)';
+      return 'var(--blue)';
+    };
+    document.getElementById('aibrief-signals-panel').innerHTML =
+      '<div class="card" style="margin-bottom:0">' +
+      '<div class="card-label">Signal score — ' + d.signals.filter(s=>s.confirmed).length + '/' + d.signals.length + ' confirmed</div>' +
+      '<div style="display:flex;align-items:baseline;gap:6px;margin-bottom:10px">' +
+      '<div style="font-size:28px;font-weight:700;color:var(--orange);font-family:var(--font-mono)">' + pct + '</div>' +
+      '<div style="font-size:13px;color:var(--dim)">%</div></div>' +
+      d.signals.map(s => {
+        const c = sigColor(s);
+        return '<div class="score-row">' +
+          '<div class="score-label" style="color:' + (s.confirmed?'var(--cream)':'var(--dim)') + ';font-size:11px">' + s.l + '</div>' +
+          '<div class="score-track"><div class="score-fill" style="width:' + (s.score*10) + '%;background:' + c + '"></div></div>' +
+          '<span class="score-val" style="color:' + c + '">' + s.score + '</span>' +
+        '</div>';
+      }).join('') + '</div>';
+
+    // Urgency drivers panel
+    const confirmed = d.signals.filter(s => s.confirmed && s.score >= 8);
+    document.getElementById('aibrief-urgency-panel').innerHTML =
+      '<div class="card" style="border-left:3px solid var(--teal)">' +
+      '<div class="card-label" style="color:var(--teal)">Urgency drivers (confirmed)</div>' +
+      confirmed.map(s => '<div style="display:flex;align-items:flex-start;gap:8px;padding:5px 0;border-bottom:1px solid var(--border)">' +
+        '<span style="color:var(--teal);font-size:11px;margin-top:2px;flex-shrink:0">●</span>' +
+        '<span style="font-size:12px;color:var(--muted);line-height:1.5"><strong style="color:var(--cream)">' + s.l.split('(')[0].trim() + '</strong>' +
+        (s.l.includes('(') ? ' <span style="color:var(--dim)">(' + s.l.split('(')[1] : '') + '</span></div>'
+      ).join('') + '</div>';
+  }
+
+  // Store data for deferred canvas rendering
+  window._aibriefRadarData = d.radarData || null;
+  window._aibriefMqTools = d.mqTools || null;
+
   // Show section
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
@@ -1635,7 +1845,7 @@ function switchTab(group, tab) {
   const panel = document.getElementById(`${group}-${tab}`);
   if (panel) panel.classList.add('active');
   const tabs = document.querySelectorAll(`#${group}-tabs .tab`);
-  const tabNames = {snapshot:['usecases','medd','radar','quadrant'], aibrief:['usecases','medd','radar']};
+  const tabNames = {snapshot:['usecases','medd','radar','quadrant'], aibrief:['usecases','medd','radar','techradar','landscape']};
   const names = tabNames[group] || [];
   tabs.forEach((t,i) => {
     if (names[i] === tab) t.classList.add('active');
@@ -1643,6 +1853,8 @@ function switchTab(group, tab) {
   });
   if (tab === 'radar') setTimeout(drawTechRadar, 50);
   if (tab === 'quadrant') setTimeout(drawMagicQuadrant, 50);
+  if (group === 'aibrief' && tab === 'techradar') setTimeout(drawAiBriefRadar, 50);
+  if (group === 'aibrief' && tab === 'landscape') setTimeout(drawAiBriefQuadrant, 50);
 }
 
 // SIGNAL DATA
@@ -1977,6 +2189,136 @@ function toggleSignal(el) {
 }
 
 // INIT
+// ═══════════════════════════════════════
+// AI BRIEF — TECH RADAR CANVAS
+// ═══════════════════════════════════════
+function drawAiBriefRadar() {
+  var d = window._aibriefRadarData;
+  var canvas = document.getElementById('aibrief-radar-canvas');
+  if (!canvas || !d) return;
+  var ctx = canvas.getContext('2d');
+  var W = canvas.width, H = canvas.height, cx = W/2, cy = H/2;
+  var maxR = Math.min(W,H)/2 - 24;
+  var ringRadii = [maxR, maxR*0.72, maxR*0.46, maxR*0.24];
+  ctx.clearRect(0,0,W,H);
+  ctx.fillStyle = '#1A1A16'; ctx.fillRect(0,0,W,H);
+  // Rings
+  var rings = d.rings || ['ADOPT','TRIAL','ASSESS','HOLD'];
+  for (var ri=0; ri<4; ri++) {
+    ctx.beginPath(); ctx.arc(cx,cy,ringRadii[ri],0,Math.PI*2);
+    ctx.strokeStyle='#2E2E2A'; ctx.lineWidth=1; ctx.stroke();
+    ctx.fillStyle='#5A5A56'; ctx.font='9px monospace'; ctx.textAlign='center';
+    ctx.fillText(rings[ri], cx, cy-ringRadii[ri]+12);
+  }
+  // Axes
+  ctx.strokeStyle='#2E2E2A'; ctx.lineWidth=1;
+  ctx.beginPath(); ctx.moveTo(cx,cy-maxR-4); ctx.lineTo(cx,cy+maxR+4); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(cx-maxR-4,cy); ctx.lineTo(cx+maxR+4,cy); ctx.stroke();
+  // Quadrant fills + labels
+  var qColors = d.quadrants.map(function(q){return q.color;});
+  var qNames  = d.quadrants.map(function(q){return q.name;});
+  var qAngles = [[0,Math.PI/2],[Math.PI/2,Math.PI],[Math.PI,3*Math.PI/2],[3*Math.PI/2,2*Math.PI]];
+  var qLabelPos = [{x:cx+maxR*0.55,y:cy-maxR*0.88},{x:cx-maxR*0.55,y:cy-maxR*0.88},{x:cx-maxR*0.55,y:cy+maxR*0.88},{x:cx+maxR*0.55,y:cy+maxR*0.88}];
+  for (var qi=0; qi<4; qi++) {
+    var hx=qColors[qi].replace('#',''), rr=parseInt(hx.slice(0,2),16), gg=parseInt(hx.slice(2,4),16), bb=parseInt(hx.slice(4,6),16);
+    ctx.beginPath(); ctx.moveTo(cx,cy); ctx.arc(cx,cy,maxR,qAngles[qi][0],qAngles[qi][1]); ctx.closePath();
+    ctx.fillStyle='rgba('+rr+','+gg+','+bb+',0.06)'; ctx.fill();
+    ctx.fillStyle=qColors[qi]; ctx.font='bold 8px sans-serif'; ctx.textAlign='center';
+    ctx.fillText(qNames[qi].toUpperCase(), qLabelPos[qi].x, qLabelPos[qi].y);
+  }
+  // Dots
+  var qAngleRanges=[[10,80],[100,170],[190,260],[280,350]];
+  var groups={};
+  d.entries.forEach(function(e){var k=e.q+'-'+e.r; if(!groups[k])groups[k]=[]; groups[k].push(e);});
+  var allDots=[];
+  Object.keys(groups).forEach(function(key){
+    var parts=key.split('-'), q=parseInt(parts[0]), r=parseInt(parts[1]);
+    var items=groups[key], minA=qAngleRanges[q][0], maxA=qAngleRanges[q][1];
+    var innerR=r<3?ringRadii[r+1]:0, outerR=ringRadii[r], n=items.length;
+    items.forEach(function(item,idx){
+      var angle=(minA+(maxA-minA)*((idx+0.5)/n))*Math.PI/180;
+      var dist=innerR+(outerR-innerR)*(0.35+(idx%2)*0.28);
+      var px=cx+dist*Math.cos(angle), py=cy+dist*Math.sin(angle);
+      var hx=qColors[q].replace('#',''), rr2=parseInt(hx.slice(0,2),16), gg2=parseInt(hx.slice(2,4),16), bb2=parseInt(hx.slice(4,6),16);
+      ctx.beginPath(); ctx.arc(px,py,5,0,Math.PI*2);
+      ctx.fillStyle='rgba('+rr2+','+gg2+','+bb2+',0.85)'; ctx.fill();
+      ctx.fillStyle=qColors[q]; ctx.font='bold 8px sans-serif'; ctx.textAlign='center';
+      ctx.fillText(item.label, px, py-8);
+      allDots.push({item:item,px:px,py:py,color:qColors[q]});
+    });
+  });
+  // Legend
+  var leg=document.getElementById('aibrief-radar-legend');
+  if (leg) {
+    leg.innerHTML=d.quadrants.map(function(q,qi){
+      var entries=d.entries.filter(function(e){return e.q===qi;});
+      return '<div style="margin-bottom:12px"><div style="font-size:9px;font-weight:700;color:'+q.color+';letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px">'+q.name+'</div>'+
+      entries.map(function(e){return '<div style="display:flex;align-items:flex-start;gap:5px;padding:2px 0;border-bottom:1px solid var(--border)"><span style="font-size:8px;color:'+q.color+';flex-shrink:0;margin-top:2px">●</span><div style="min-width:0"><span style="font-size:10px;font-weight:600;color:var(--cream)">'+e.label+'</span> <span style="font-size:9px;color:var(--dim)">['+d.rings[e.r]+']</span><div style="font-size:9px;color:var(--dim);line-height:1.4">'+e.note+'</div></div></div>';}).join('')+'</div>';
+    }).join('');
+  }
+}
+
+// ═══════════════════════════════════════
+// AI BRIEF — AI LANDSCAPE QUADRANT
+// ═══════════════════════════════════════
+function drawAiBriefQuadrant() {
+  var canvas = document.getElementById('aibrief-quadrant-canvas');
+  if (!canvas) return;
+  var tools = window._aibriefMqTools || MQ_TOOLS;
+  var ctx = canvas.getContext('2d');
+  var W=canvas.width, H=canvas.height, pad=48, plotW=W-pad*2, plotH=H-pad*2;
+  ctx.clearRect(0,0,W,H); ctx.fillStyle='#1A1A16'; ctx.fillRect(0,0,W,H);
+  var bgData=[
+    {x:pad+plotW/2,y:pad,w:plotW/2,h:plotH/2,color:'#0D9E75',label:'LEADERS',lx:pad+plotW*0.75,ly:pad+22},
+    {x:pad,y:pad,w:plotW/2,h:plotH/2,color:'#C8A842',label:'VISIONARIES',lx:pad+plotW*0.25,ly:pad+22},
+    {x:pad+plotW/2,y:pad+plotH/2,w:plotW/2,h:plotH/2,color:'#6B7EBB',label:'CHALLENGERS',lx:pad+plotW*0.75,ly:pad+plotH/2+22},
+    {x:pad,y:pad+plotH/2,w:plotW/2,h:plotH/2,color:'#5A5A56',label:'NICHE PLAYERS',lx:pad+plotW*0.25,ly:pad+plotH/2+22}
+  ];
+  bgData.forEach(function(bg){
+    var hx=bg.color.replace('#',''), rr=parseInt(hx.slice(0,2),16), gg=parseInt(hx.slice(2,4),16), bb=parseInt(hx.slice(4,6),16);
+    ctx.fillStyle='rgba('+rr+','+gg+','+bb+',0.07)'; ctx.fillRect(bg.x,bg.y,bg.w,bg.h);
+    ctx.fillStyle='rgba('+rr+','+gg+','+bb+',0.18)'; ctx.fillRect(bg.x,bg.y,bg.w,28);
+    ctx.fillStyle=bg.color; ctx.font='bold 9px monospace'; ctx.textAlign='center';
+    ctx.fillText(bg.label,bg.lx,bg.ly);
+  });
+  ctx.strokeStyle='#2E2E2A'; ctx.lineWidth=1; ctx.strokeRect(pad,pad,plotW,plotH);
+  ctx.beginPath(); ctx.moveTo(pad+plotW/2,pad); ctx.lineTo(pad+plotW/2,pad+plotH); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(pad,pad+plotH/2); ctx.lineTo(pad+plotW,pad+plotH/2); ctx.stroke();
+  ctx.fillStyle='#5A5A56'; ctx.font='9px monospace'; ctx.textAlign='center';
+  ctx.fillText('Enterprise Completeness →',pad+plotW/2,H-6);
+  ctx.save(); ctx.translate(12,pad+plotH/2); ctx.rotate(-Math.PI/2);
+  ctx.fillText('AI Coding Capability →',0,0); ctx.restore();
+  tools.forEach(function(tool){
+    var isCursor=tool.name==='Cursor';
+    var px=pad+tool.x*plotW, py=pad+(1-tool.y)*plotH, radius=isCursor?15:10;
+    var hx=tool.color.replace('#',''), rr=parseInt(hx.slice(0,2),16), gg=parseInt(hx.slice(2,4),16), bb=parseInt(hx.slice(4,6),16);
+    ctx.beginPath(); ctx.arc(px,py,radius,0,Math.PI*2);
+    ctx.fillStyle='rgba('+rr+','+gg+','+bb+','+(isCursor?0.85:0.5)+')'; ctx.fill();
+    ctx.strokeStyle=tool.color; ctx.lineWidth=isCursor?2.5:1.5; ctx.stroke();
+    if(isCursor){ctx.beginPath();ctx.arc(px,py,radius+5,0,Math.PI*2);ctx.strokeStyle=tool.color+'55';ctx.lineWidth=1;ctx.stroke();}
+    var nearTop=py<pad+60;
+    ctx.fillStyle=isCursor?tool.color:'#F2F1EB';
+    ctx.font=(isCursor?'bold ':'')+'8.5px sans-serif'; ctx.textAlign='center';
+    ctx.fillText(tool.short,px,nearTop?py+radius+12:py-radius-4);
+  });
+  // Details panel
+  var det=document.getElementById('aibrief-quadrant-details');
+  if(det){
+    det.innerHTML=tools.map(function(tool){
+      var isCursor=tool.name==='Cursor';
+      return '<div style="background:'+(isCursor?'var(--orange3)':'var(--bg2)')+';border:1px solid '+(isCursor?'var(--orange2)':'var(--border)')+';border-radius:6px;padding:10px;margin-bottom:8px">'+
+      '<div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">'+
+      '<div style="width:9px;height:9px;border-radius:50%;background:'+tool.color+';flex-shrink:0"></div>'+
+      '<div style="font-size:12px;font-weight:600;color:'+(isCursor?'var(--orange)':'var(--cream)')+'">'+tool.name+'</div>'+
+      '<span style="font-size:9px;color:'+tool.color+';background:'+tool.color+'22;padding:2px 6px;border-radius:3px;font-family:monospace">'+tool.quadrant+'</span></div>'+
+      '<div style="display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-bottom:5px">'+
+      '<div style="font-size:10px;color:var(--dim)">Enterprise: <span style="color:'+tool.color+'">'+tool.enterprise+'</span></div>'+
+      '<div style="font-size:10px;color:var(--dim)">AI Cap: <span style="color:'+tool.color+'">'+tool.aiCap+'</span></div></div>'+
+      '<div style="font-size:10px;color:var(--dim);line-height:1.5">'+tool.note+'</div></div>';
+    }).join('');
+  }
+}
+
 buildScores();
 buildTop5();
 buildCap1Scores();
@@ -2628,25 +2970,18 @@ function buildRadarLegend(dots) {
   html += "</div>";
 
   for (var q = 0; q < 4; q++) {
-    var qDots = dots.filter(function(d){return d.q===q;});
-    if (!qDots.length) continue;
+    var qEntries = RADAR_DATA.entries.filter(function(e){return e.q===q;});
+    if (!qEntries.length) continue;
     html += "<div style='margin-bottom:12px'>";
-    html += "<div style='font-size:9px;font-weight:600;color:"+qColors[q]+";letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px;padding-bottom:4px;border-bottom:1px solid "+qColors[q]+"33'>"+qNames[q]+"</div>";
-    // Group by ring, render as inline chips
-    for (var r = 0; r < 4; r++) {
-      var rDots = qDots.filter(function(d){return d.r===r;});
-      if (!rDots.length) continue;
-      html += "<div style='display:flex;align-items:flex-start;gap:4px;margin-bottom:4px;flex-wrap:wrap'>";
-      html += "<span style='font-size:8px;color:var(--dim);font-family:monospace;padding-top:3px;white-space:nowrap;min-width:42px'>"+rings[r]+"</span>";
-      rDots.forEach(function(d){
-        var sp = (d.label==="Cursor"||d.label==="Copilot"||d.label==="Claude Code");
-        var chipBg = sp ? d.color+"22" : "var(--bg3)";
-        var chipBorder = sp ? d.color+"66" : "var(--border)";
-        var chipColor = sp ? d.color : "var(--muted)";
-        html += "<span title='"+d.note+"' style='font-size:9px;padding:2px 7px;border-radius:3px;background:"+chipBg+";border:1px solid "+chipBorder+";color:"+chipColor+";font-weight:"+(sp?"600":"400")+";cursor:default;white-space:nowrap'>"+d.label+"</span>";
-      });
-      html += "</div>";
-    }
+    html += "<div style='font-size:9px;font-weight:700;color:"+qColors[q]+";letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px'>"+qNames[q]+"</div>";
+    qEntries.forEach(function(e){
+      var sp = (e.label==="Cursor"||e.label==="Copilot"||e.label==="Claude Code");
+      html += "<div style='display:flex;align-items:flex-start;gap:5px;padding:3px 0;border-bottom:1px solid var(--border)'>" +
+        "<span style='font-size:8px;color:"+qColors[q]+";flex-shrink:0;margin-top:2px'>●</span>" +
+        "<div style='min-width:0'><span style='font-size:10px;font-weight:"+(sp?'700':'600')+";color:"+(sp?qColors[q]:'var(--cream)')+"'>"+e.label+"</span>" +
+        " <span style='font-size:9px;color:var(--dim)'>["+RADAR_DATA.rings[e.r]+"]</span>" +
+        "<div style='font-size:9px;color:var(--dim);line-height:1.4'>"+e.note+"</div></div></div>";
+    });
     html += "</div>";
   }
 
