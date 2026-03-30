@@ -335,6 +335,12 @@ hr.section-hr{border:none;border-top:1px solid var(--border);margin:24px 0}
     DACH 30/60/90 Plan
   </div>
 
+  <div class="nav-section-label" id="aibrief-nav-label" style="display:none">AI Account Brief</div>
+  <div class="nav-item" id="aibrief-nav-item" onclick="showSection('aibrief')" style="display:none">
+    <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+    <span id="aibrief-nav-label-text">Account Brief</span>
+  </div>
+
   <div class="sidebar-footer">
     <div class="sidebar-footer-role" style="color:var(--orange);font-size:9px;font-family:var(--font-mono);letter-spacing:0.08em">CURSOR · FOUNDING AE</div>
     <div class="sidebar-footer-role" style="margin-top:3px">Submission · March 2026</div>
@@ -435,10 +441,54 @@ hr.section-hr{border:none;border-top:1px solid var(--border);margin:24px 0}
       </div>
     </div>
 
+    <!-- AI Account Brief Generator -->
+    <div style="margin-top:24px;background:var(--bg2);border:1px solid var(--border2);border-radius:10px;padding:22px;position:relative;overflow:hidden">
+      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--orange),var(--amber),var(--teal))"></div>
+      <div style="display:flex;align-items:flex-start;gap:16px">
+        <div style="font-size:28px;line-height:1;flex-shrink:0">⚡</div>
+        <div style="flex:1">
+          <div style="font-size:10px;font-weight:700;color:var(--orange);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:4px">DACH Account Intelligence Generator</div>
+          <div style="font-size:15px;font-weight:700;color:var(--cream);margin-bottom:6px">Generate a full account brief for any DACH target</div>
+          <div style="font-size:12px;color:var(--muted);margin-bottom:16px;line-height:1.6">Same depth as Capital One — use cases ranked by business impact, MEDDPICC, tech radar, AI landscape. Type any company and hit GO.</div>
+          <div style="display:flex;gap:10px;align-items:center">
+            <input id="brief-company-input" type="text" placeholder="BMW Group · Siemens AG · Allianz SE" style="flex:1;background:var(--bg3);border:1px solid var(--border2);border-radius:6px;padding:10px 14px;color:var(--cream);font-size:13px;font-family:var(--font-body);outline:none;transition:border-color .15s" onfocus="this.style.borderColor='var(--orange)'" onblur="this.style.borderColor='var(--border2)'" onkeydown="if(event.key==='Enter')generateBrief()"/>
+            <button onclick="generateBrief()" id="brief-go-btn" style="background:var(--orange);border:none;border-radius:6px;padding:10px 22px;color:#000;font-size:13px;font-weight:700;cursor:pointer;font-family:var(--font-body);transition:background .15s;white-space:nowrap" onmouseover="this.style.background='var(--orange2)'" onmouseout="this.style.background='var(--orange)'">GO →</button>
+          </div>
+          <div id="brief-status" style="margin-top:10px;font-size:11px;color:var(--muted);font-family:var(--font-mono);display:none"></div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
-<!-- ═══════════ METHODOLOGY ═══════════ -->
+<!-- ═══════════ AI ACCOUNT BRIEF ═══════════ -->
+<section id="aibrief" class="section">
+  <div class="hero" style="padding-bottom:28px">
+    <div class="hero-tag"><span class="hero-tag-dot"></span>AI-Generated · DACH Account Intelligence</div>
+    <h1 id="aibrief-hero-title">Account Brief</h1>
+    <p class="hero-sub" id="aibrief-hero-sub">Generating account intelligence...</p>
+  </div>
+  <div class="page-content">
+    <div id="aibrief-stats" style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;margin-bottom:18px"></div>
+    <div class="tabs" id="aibrief-tabs">
+      <div class="tab active" onclick="switchTab('aibrief','usecases')" style="color:var(--orange)">Use Cases</div>
+      <div class="tab" onclick="switchTab('aibrief','medd')" style="color:var(--orange)">MEDDPICC</div>
+      <div class="tab" onclick="switchTab('aibrief','radar')" style="color:var(--orange)">Tech Context</div>
+    </div>
+    <div id="aibrief-usecases" class="tab-panel active">
+      <div id="aibrief-uc-nav" style="display:flex;gap:6px;margin-bottom:20px;flex-wrap:wrap"></div>
+      <div id="aibrief-uc-panels"></div>
+    </div>
+    <div id="aibrief-medd" class="tab-panel">
+      <div id="aibrief-medd-grid" class="medd-grid"></div>
+    </div>
+    <div id="aibrief-radar" class="tab-panel">
+      <div id="aibrief-radar-content"></div>
+    </div>
+  </div>
+</section>
+
 <section id="methodology" class="section">
   <div class="hero" style="padding-bottom:28px">
     <div class="hero-tag"><span class="hero-tag-dot"></span>Part 1 — Fortune 100 Pipeline Generation</div>
@@ -1265,6 +1315,273 @@ function togglePD(el) {
   el.classList.toggle('open');
 }
 
+// AI ACCOUNT BRIEF GENERATOR
+const DACH_BRIEFS = {
+  'bmw': {
+    company:'BMW Group', sector:'Automotive / Mobility Technology', tagline:'Building the software-defined vehicle — engineering velocity is the new competitive moat',
+    stats:[{n:'30,000+',l:'Software engineers globally'},{n:'€142B',l:'Revenue 2024'},{n:'AWS + Azure',l:'Multi-cloud · no lock-in'},{n:'2025',l:'Neue Klasse software platform launch'}],
+    thesis:'BMW is mid-transformation from hardware manufacturer to software-defined vehicle company. The Neue Klasse platform — launching 2025 — requires engineering teams to write, test, and ship automotive software at a pace the organisation has never operated at. Cursor is the development layer that helps BMW\'s engineers navigate a codebase spanning embedded systems, cloud services, and AI at the speed the Neue Klasse roadmap demands.',
+    urgency:'Neue Klasse platform launch 2025 · JoyCode internal AI mandate · Software-defined vehicle = engineering velocity race',
+    quote:'"Software is the decisive competitive factor in the automotive industry. Whoever is best at software wins."',
+    quoteExec:'Oliver Zipse, CEO — BMW Group Annual Conference 2024',
+    usecases:[
+      {icon:'🚗',label:'Neue Klasse Platform',title:'Neue Klasse software delivery — engineering velocity at platform scale',
+        businessContext:{heading:'€142B revenue · software defines the product',bullets:['Neue Klasse EV platform launches 2025 — most software-intensive vehicle in BMW history','Software features are the primary product differentiation going forward','Every week of delayed feature shipping is a competitive vulnerability vs Tesla, BYD','Engineering velocity is now a board-level business metric at BMW']},
+        itReality:{heading:'30,000 engineers across a fragmented multi-domain codebase',bullets:['Embedded systems, cloud services, AI/ML, and mobile apps all interconnected','New engineers take 6–12 months to understand domain boundaries and dependencies','JoyCode internal AI tool launched — but codebase context is limited to open files','Cross-team feature delivery requires navigating unfamiliar repos constantly']},
+        cursorFit:{heading:'Full codebase context across BMW\'s entire software stack',bullets:['Cursor indexes the full Neue Klasse codebase — engineers query dependencies before writing','Ramp time for new engineers compresses from months to weeks','Agent mode handles cross-domain tasks across embedded, cloud, and mobile layers','Most financially quantifiable use case: shipping velocity on the most strategic platform BMW has built']}},
+      {icon:'🤖',label:'JoyCode Integration',title:'JoyCode + Cursor — making BMW\'s internal AI mandate deliver at the IDE level',
+        businessContext:{heading:'BMW mandated internal AI adoption in 2024',bullets:['JoyCode is BMW\'s internal AI coding assistant — rolled out across engineering org','Mandate: every engineer uses AI in development workflow by end of 2025','Problem: JoyCode operates at file-level, not system-level — adoption is lagging','Engineering leaders track AI tool usage weekly as a productivity metric']},
+        itReality:{heading:'JoyCode is a chat assistant — not a codebase agent',bullets:['JoyCode helps with documentation and isolated function generation','It cannot reason across BMW\'s distributed automotive software architecture','Engineers default back to manual codebase navigation for complex tasks','AI mandate metric (usage) is being met; productivity metric (velocity) is not']},
+        cursorFit:{heading:'Cursor complements JoyCode — fills the codebase intelligence gap',bullets:['JoyCode for documentation and isolated tasks; Cursor for system-level agent work','Full codebase indexing makes the AI adoption mandate actually deliver velocity gains','Engineers who use both tools are measurably more productive on cross-domain tasks','Positions Cursor as the layer that makes BMW\'s existing AI investment pay off']}},
+      {icon:'🔐',label:'IP & Security',title:'Source code protection — automotive IP in the development environment',
+        businessContext:{heading:'BMW\'s software is its competitive moat — IP protection is non-negotiable',bullets:['Neue Klasse source code contains years of proprietary automotive AI and control logic','German Betriebsrat (works council) approval required for any tooling that touches engineer data','GDPR compliance for any tool processing code written by EU employees','BMW operates under strict IP protection policies — all tooling audited by security team']},
+        itReality:{heading:'Shadow AI tool usage is a board-level IP risk',bullets:['Engineers use personal AI tools on corporate code outside governed environments','No audit trail for what code left BMW\'s environment and where it was processed','Security team cannot assess risk without visibility into tool usage patterns','Betriebsrat has blocked previous tooling rollouts over data privacy concerns']},
+        cursorFit:{heading:'Cursor Enterprise resolves every BMW governance requirement',bullets:['Privacy Mode: code is never stored, logged, or used for training — nothing retained','SOC 2 Type II + ZDR: meets BMW security team audit requirements','Admin console: full visibility into usage, policy compliance, and access controls','Betriebsrat-ready: data residency and privacy documentation available in German']}},
+      {icon:'⚡',label:'Developer Velocity',title:'Sprint throughput — PR velocity across 2,000+ development teams',
+        businessContext:{heading:'Software-defined vehicle = continuous delivery at automotive scale',bullets:['BMW has shifted from 1-2 major software releases per year to continuous delivery','2,000+ engineering teams across Munich, Berlin, Seattle, and partner locations','Feature release cadence directly correlates with market response time','CTO Frank Weber has publicly committed to software delivery transformation']},
+        itReality:{heading:'Codebase complexity caps throughput at every sprint',bullets:['Engineers spend 30–40% of sprint time understanding existing code before writing','Cross-team code review cycles are slow — reviewers lack context on unfamiliar modules','PR backlog grows under volume because review quality degrades without system context','Legacy automotive software patterns mixed with modern cloud-native code creates navigation friction']},
+        cursorFit:{heading:'Cursor compresses the context gap that slows every sprint',bullets:['Engineers query the codebase instead of reading it — understanding time drops significantly','Agent pre-reviews PRs for consistency and architectural fit before human review','Multi-file agent mode handles cross-team changes without manual dependency mapping','PR throughput improves; sprint velocity improves; feature cadence improves']}}
+    ],
+    meddpicc:{
+      M:'30–50% reduction in time-to-first-PR on unfamiliar codebases\nSprint velocity uplift measurable within 4-week pilot\nBenchmark: 20,000+ BMW engineers × even 1hr/day saved = massive ROI',
+      E:'Frank Weber (CTO) — technology transformation mandate holder\nChristian Winkler (CIO) — enterprise tooling budget authority\nWorks council (Betriebsrat) — must approve any tooling touching engineer data',
+      D1:'Privacy Mode + SOC 2 + ZDR — meets BMW security requirements ✓\nGerman data residency documentation available ✓\nBetriebsrat-compatible privacy architecture ✓\nComplements JoyCode rather than replacing it ✓',
+      D2:'Security review → Betriebsrat consultation → IT/procurement → Legal (DPA)\nPilot: 100 engineers, 4 weeks, 3 KPIs (PR velocity, dev NPS, adoption)\nEst. cycle: 90 days to POC · 9 months to enterprise (Betriebsrat adds time)',
+      P:'German procurement: formal RFP process for tooling above €100K annual\nDPA (Datenschutzvereinbarung) required — Cursor has standard EU DPA template\nBetriebsrat must co-sign any tool that monitors or assists engineer work\nEst. 60–90 days post-champion sign-off',
+      I:'JoyCode mandate is tracking usage, not velocity — engineers are compliant but not faster\nNeue Klasse codebase complexity is the hidden ceiling on sprint throughput\n30,000 engineers onboarding to a more complex software architecture than ever before',
+      C1:'Target: Staff/Principal Engineer on Neue Klasse software platform team\nNeeds: personal Cursor conviction + ability to run informal POC and present results upward\nEntry: GitHub contributions at github.com/bmw + LinkedIn engineering community presence',
+      C2:'JoyCode (internal — complementary, not competitive)\nGitHub Copilot (likely evaluated — Azure EA possible, check procurement)\nRisk: BMW could expand JoyCode scope — mitigated by codebase context gap Cursor fills'
+    },
+    techContext:[
+      {category:'Cloud & Infrastructure',items:['AWS primary + Azure secondary — deliberate multi-cloud','BMW Cloud (internal IDP for automotive workloads)','Kubernetes at scale across Munich, Berlin, Seattle engineering hubs']},
+      {category:'Dev Tooling & Source Control',items:['GitHub Enterprise — confirmed source control','JoyCode — internal AI coding assistant (file-level, not codebase-aware)','Jenkins + Artifactory CI/CD pipeline at automotive scale']},
+      {category:'AI / ML & Automotive Software',items:['Neue Klasse AI platform: autonomous driving, predictive maintenance, in-car AI','TechWorks joint ventures with partners for embedded software','VS Code confirmed as primary IDE across software engineering org']},
+      {category:'Where Cursor Fits',items:['VS Code native — zero friction adoption for 30,000 engineers','Fills JoyCode\'s codebase context gap without replacing it','Privacy Mode clears Betriebsrat and GDPR requirements from day one']}
+    ]
+  },
+
+  'siemens': {
+    company:'Siemens AG', sector:'Industrial Technology / Digital Industries', tagline:'The industrial software company — engineering the intelligence layer of the physical world',
+    stats:[{n:'20,000+',l:'Software engineers globally'},{n:'€75B',l:'Revenue FY2024'},{n:'Azure primary',l:'M365 EA · GitHub Copilot risk'},{n:'2025',l:'Industrial Copilot scaling mandate'}],
+    thesis:'Siemens has repositioned itself as a technology company — 40% of revenue is now software and digital services. Its Industrial Copilot initiative is live, but it is built for operators on the factory floor, not for the 20,000+ engineers writing the software that powers it. Cursor is the missing layer: the AI development environment for the engineers building Siemens\'s industrial AI products, operating in one of the most complex multi-domain codebases in European industry.',
+    urgency:'Industrial Copilot scaling 2025 · Xcelerator platform engineering demand · Azure EA = Copilot bundling to navigate',
+    quote:'"We are a technology company. Software and AI are at the heart of everything we do."',
+    quoteExec:'Roland Busch, CEO — Siemens Annual Shareholders Meeting 2024',
+    usecases:[
+      {icon:'🏭',label:'Industrial Copilot',title:'Engineers building Industrial Copilot need agentic developer tooling — not just the Copilot they built',
+        businessContext:{heading:'Industrial Copilot is Siemens\'s most strategic AI product',bullets:['Industrial Copilot launched 2024 — AI assistant for factory floor operators across Siemens customers','Scaling across manufacturing, energy, and infrastructure clients globally in 2025','The engineers building and extending Industrial Copilot work on the most complex codebase in Siemens','Engineering velocity on this product directly determines Siemens\'s AI market position']},
+        itReality:{heading:'GitHub Copilot is available — but it doesn\'t understand Industrial Copilot\'s architecture',bullets:['GitHub Copilot bundled via Azure EA — deployed across engineering org','It generates code at file level — cannot navigate Siemens\'s proprietary industrial software graph','Engineers building new Industrial Copilot modules manually map cross-service dependencies','Tool capability doesn\'t match the architectural complexity of the product being built']},
+        cursorFit:{heading:'Cursor gives Industrial Copilot engineers the system-level AI they\'re building for others',bullets:['Full codebase indexing across Siemens\'s industrial software architecture','Agent mode handles multi-module Industrial Copilot extensions without manual dependency navigation','Engineers building AI products use an AI-native development environment','Positions Cursor as the development layer for Siemens\'s most important product team']}},
+      {icon:'⚙️',label:'Xcelerator Platform',title:'Xcelerator codebase complexity — Siemens\'s industrial SaaS platform at scale',
+        businessContext:{heading:'Xcelerator is Siemens\'s €10B+ SaaS platform bet',bullets:['Siemens Xcelerator is the open digital business platform — launched 2022, scaling aggressively','Integrates Siemens\'s industrial software portfolio: PLM, MES, SCADA, IoT, AI into one platform','20,000+ engineers contributing to Xcelerator directly or through integrated products','Platform delivery speed determines competitive position vs Rockwell, ABB, Honeywell']},
+        itReality:{heading:'Xcelerator spans decades of acquired codebases — navigation is a constant bottleneck',bullets:['Siemens has made 20+ software acquisitions — codebases have different architectures and conventions','New engineers take 6–12 months to understand how Xcelerator\'s components interconnect','Copilot sees one file — Xcelerator integration work spans 5–10 services per feature','PR review is slow because reviewers lack context on the service being changed']},
+        cursorFit:{heading:'Cursor makes the Xcelerator codebase queryable — not just searchable',bullets:['Engineers ask the full Xcelerator architecture instead of reading 10-year-old documentation','Ramp for new engineers and acquired-company engineers compresses from months to weeks','Agent mode handles cross-service Xcelerator changes — the exact complexity Copilot can\'t navigate','PR quality improves; cycle time drops; platform delivery accelerates']}},
+      {icon:'🔒',label:'IP & Governance',title:'Industrial IP protection — Siemens\'s source code is its competitive moat',
+        businessContext:{heading:'Siemens\'s software is worth more than its hardware business',bullets:['40% of revenue is now software and digital — source code is the primary asset','German Betriebsrat approval required for any AI tool touching engineer data','GDPR + German data protection law applies to all tooling processing engineer-generated content','Industrial software IP: PLM algorithms, SCADA logic, AI models — all strategically sensitive']},
+        itReality:{heading:'GitHub Copilot\'s Azure dependency creates a data jurisdiction question',bullets:['Copilot processes code via Azure data centres — data residency must be confirmed for EU compliance','Betriebsrat has questioned whether Copilot usage is adequately governed','Shadow usage of personal AI tools on Siemens code is a known and growing risk','Security team needs admin-level visibility into what AI tools are accessing Siemens IP']},
+        cursorFit:{heading:'Cursor Enterprise resolves Siemens\'s governance requirements cleanly',bullets:['Privacy Mode: code is not stored, retained, or used for training — confirmed ephemeral','EU data residency documentation available — clears Betriebsrat concerns','SOC 2 Type II + ZDR — meets Siemens security team audit standard','Admin console: full policy enforcement and usage visibility org-wide']}},
+      {icon:'🚀',label:'Engineering Ramp',title:'Acquired-company onboarding — integrating 20+ software acquisitions at engineering scale',
+        businessContext:{heading:'Siemens grows through software acquisition — onboarding is a constant challenge',bullets:['20+ software companies acquired in the last decade: Mendix, EDA software, industrial AI firms','Each acquisition brings a different codebase, architecture, and engineering culture','Engineers from acquired companies need months to understand Siemens\'s platform context','Integration velocity determines whether acquisitions deliver their synergy targets']},
+        itReality:{heading:'No codebase-aware AI exists to accelerate acquired-company onboarding',bullets:['Engineers from acquired companies receive documentation that is always out of date','Understanding how their system connects to Siemens\'s broader Xcelerator platform takes months','Copilot sees their local files — it cannot show how their service fits the Siemens graph','Senior Siemens engineers spend disproportionate time on tribal knowledge transfer']},
+        cursorFit:{heading:'Cursor makes any Siemens codebase queryable on day one',bullets:['New engineers from any acquisition can ask the full platform architecture immediately','Cursor indexes Siemens\'s codebase and explains how new code connects to existing services','Senior engineer time spent on onboarding reduces significantly','Acquisition integration velocity improves — synergy timelines compress']}}
+    ],
+    meddpicc:{
+      M:'30–50% reduction in ramp time for acquired-company engineers\nXcelerator feature delivery cycle time measurable via PR frequency\nIndustrial Copilot engineering team velocity — most strategic metric',
+      E:'Cedrik Neike (COO Digital Industries) — budget authority for industrial software engineering\nHans-Georg Krabbe (CIO) — enterprise tooling decisions\nBetriebsrat — co-approval required for tooling touching engineer workflows',
+      D1:'Complements GitHub Copilot rather than replacing it ✓\nPrivacy Mode + SOC 2 + EU data residency ✓\nBetriebsrat-compatible — no engineer monitoring, purely assistive ✓\nFull codebase context for multi-service Xcelerator work ✓',
+      D2:'Security review → Betriebsrat consultation → IT/procurement → Legal DPA\nPilot: Industrial Copilot engineering team, 50 engineers, 6 weeks\nEst. cycle: 90 days to POC · 9–12 months to enterprise (Betriebsrat cadence)',
+      P:'Azure EA in place — procurement already has Microsoft relationship established\nDPA required under German law — Cursor EU DPA template available\nRFP likely required above €100K — formal vendor evaluation process\nBetriebsrat sign-off adds 4–8 weeks to any timeline',
+      I:'Industrial Copilot engineering team is using file-level tools for system-level work\nXcelerator acquisition onboarding is slow — known cost against integration synergies\nCopilot bundled but not meeting velocity expectations — leadership pressure building',
+      C1:'Target: Staff Engineer or Engineering Lead on Industrial Copilot or Xcelerator platform team\nMost likely already a Cursor shadow user — Munich tech community has high Cursor awareness\nEntry: Siemens tech blog engagement + GitHub presence at github.com/siemens',
+      C2:'GitHub Copilot (bundled via Azure EA — existing relationship complicates displacement)\nInternal AI tools (Siemens has history of building internal tooling)\nStrategy: position as Copilot complement — not replacement — to avoid EA friction'
+    },
+    techContext:[
+      {category:'Cloud & Infrastructure',items:['Azure primary — deep Microsoft EA and M365 relationship','Multi-cloud for specific industrial workloads (AWS, GCP)','Siemens Industrial Edge — proprietary edge computing platform for factory AI']},
+      {category:'Dev Tooling & Source Control',items:['GitHub Enterprise — confirmed source control across engineering org','GitHub Copilot — bundled via Azure EA, deployed across engineering teams','VS Code primary IDE + JetBrains for some legacy teams']},
+      {category:'AI / ML & Industrial Platform',items:['Industrial Copilot — AI assistant for factory operators, scaling 2025','Siemens Xcelerator — open digital business platform with integrated AI','Mindsphere (now Siemens Xcelerator IoT) — industrial IoT and analytics layer']},
+      {category:'Where Cursor Fits',items:['VS Code native — installs alongside existing Copilot without conflict','Fills Copilot\'s codebase context gap for complex Xcelerator multi-service work','Betriebsrat-ready privacy architecture — clears the primary governance barrier']}
+    ]
+  },
+
+  'allianz': {
+    company:'Allianz SE', sector:'Financial Services / Insurance Technology', tagline:'Europe\'s largest insurer building AI-native insurance products — engineering velocity is the premium',
+    stats:[{n:'12,000+',l:'Technology & data engineers'},{n:'€162B',l:'Total revenues 2024'},{n:'Azure + AWS',l:'Multi-cloud · OpenAI partnership'},{n:'2025',l:'AI product mandate across all business lines'}],
+    thesis:'Allianz has committed to embedding AI across every insurance product and customer journey. Its partnership with OpenAI and Azure signals a top-down AI mandate — but the 12,000+ engineers implementing that mandate work in one of the most complex, regulation-constrained codebases in European financial services. Cursor is the development layer that helps Allianz engineers navigate that complexity at the speed the AI mandate demands, while meeting the data governance requirements that financial services regulators impose.',
+    urgency:'OpenAI partnership activation 2025 · EU AI Act compliance engineering · Claims AI platform scaling mandate',
+    quote:'"AI will fundamentally change how insurance works. We are moving fast to lead that change rather than react to it."',
+    quoteExec:'Oliver Bäte, CEO — Allianz Investor Day 2024',
+    usecases:[
+      {icon:'🤝',label:'OpenAI Partnership',title:'Activating the OpenAI partnership — engineers need AI-native tooling to build AI-native products',
+        businessContext:{heading:'Allianz + OpenAI: €1B+ strategic partnership to embed AI across all products',bullets:['Partnership announced 2024 — integrating OpenAI models across claims, underwriting, customer service','Every Allianz business line has a 2025 AI product delivery target against this mandate','Engineering teams must ship AI-integrated features faster than the partnership roadmap demands','CEO Bäte has publicly committed to AI leadership — engineering delivery is the critical constraint']},
+        itReality:{heading:'12,000 engineers building AI products with file-level development tools',bullets:['Allianz\'s insurance platform codebase spans 30+ years of claims, policy, and actuarial systems','AI features must integrate with legacy core insurance systems — highly complex codebase navigation','Current AI coding tools see the open file — they cannot map how a new AI feature connects to claims logic','Engineers building AI-native insurance products need codebase-aware AI assistance themselves']},
+        cursorFit:{heading:'Cursor gives Allianz engineers the system-level AI context they\'re building for customers',bullets:['Full codebase indexing across Allianz\'s insurance platform architecture','Agent mode handles AI feature integration across the legacy-to-modern system boundary','Engineers building AI products use an agentic development environment — not just a chat assistant','Accelerates delivery against the OpenAI partnership timeline — the board is watching']}},
+      {icon:'⚖️',label:'EU AI Act Compliance',title:'EU AI Act compliance engineering — governance built into the development workflow',
+        businessContext:{heading:'EU AI Act: Allianz faces the strictest AI compliance requirements in Europe',bullets:['EU AI Act classifies insurance AI (underwriting, claims scoring) as high-risk — mandatory compliance by 2026','Every AI model in production must be documented, audited, and explainable','Compliance engineering is becoming a major cost centre — 200+ engineers working on AI governance','Non-compliance fines: up to €30M or 6% of global annual turnover']},
+        itReality:{heading:'Compliance documentation is manual, slow, and error-prone',bullets:['AI model documentation written after the fact — not during development','Engineers writing compliance code don\'t have context on the full model architecture they\'re governing','Audit trail for AI decisions in underwriting/claims is inconsistent across teams','Compliance backlog grows faster than the compliance engineering team can clear it']},
+        cursorFit:{heading:'Cursor accelerates compliance engineering by making the AI codebase understandable',bullets:['Engineers query the full model architecture while writing compliance documentation','Agent mode generates compliance code stubs grounded in the actual system — not generic templates','Cross-team consistency in compliance implementation improves when AI understands the full context','Compliance engineering throughput improves — audit backlog reduces']}},
+      {icon:'🔒',label:'Data Governance',title:'Code and data privacy — Allianz\'s development environment must meet FSI and GDPR standards',
+        businessContext:{heading:'Allianz handles data on 125M+ customers — code governance is a regulatory requirement',bullets:['GDPR + German BDSG apply to all tooling processing code that touches customer data logic','BaFin (German financial regulator) audits Allianz\'s technology risk controls annually','Any AI coding tool must be approved through Allianz\'s Third Party Risk Management process','Security team requires full admin visibility into what data leaves Allianz\'s environment']},
+        itReality:{heading:'Shadow AI tool usage on Allianz code is a regulatory risk',bullets:['Engineers use personal AI tools on code that handles customer PII and financial logic','No audit trail for what insurance logic was processed by external AI systems','BaFin and GDPR auditors would flag ungoverned AI tool usage as a control gap','IT security team lacks visibility into which AI tools are accessing Allianz\'s codebase']},
+        cursorFit:{heading:'Cursor Enterprise clears Allianz\'s FSI governance requirements',bullets:['Privacy Mode: code is not stored, retained, or used for training — ephemeral by architecture','SOC 2 Type II + ZDR — meets BaFin and internal security audit requirements','Admin console: full policy enforcement, usage visibility, and audit trail for compliance reporting','EU data residency documentation available — satisfies GDPR data localisation requirements']}},
+      {icon:'⚡',label:'Claims Platform',title:'Claims AI platform engineering — shipping faster where every week of delay has a cost',
+        businessContext:{heading:'Claims processing is Allianz\'s largest cost and AI\'s biggest opportunity',bullets:['Claims costs represent 60–70% of premium revenue — AI-driven efficiency is the primary margin lever','Claims AI platform (automated assessment, fraud detection) scaling across all markets in 2025','Engineering delivery speed on claims AI directly determines when cost savings materialise','Allianz CFO has publicly committed to AI-driven claims efficiency as a key 2025–2026 financial target']},
+        itReality:{heading:'Claims codebase is the most complex and highest-stakes in Allianz\'s architecture',bullets:['Claims logic spans 30+ years of rules, regulations, and country-specific policy implementations','New AI features must be integrated without breaking existing claims processing logic','Engineers unfamiliar with claims systems spend weeks navigating before writing a line','PR reviews for claims changes are slow — reviewers need full context on what could break']},
+        cursorFit:{heading:'Cursor compresses the context gap that slows every claims AI feature',bullets:['Engineers query the full claims architecture before touching it — understanding time drops significantly','Agent mode handles AI feature integration while respecting the rules-based logic it must not break','PR quality improves for claims changes — fewer production incidents from under-reviewed code','Claims AI delivery accelerates — cost savings materialise faster against CFO targets']}}
+    ],
+    meddpicc:{
+      M:'Claims AI feature delivery cycle time — directly tied to €B efficiency targets\n20–40% reduction in time-to-merge on complex insurance platform changes\nCompliance engineering throughput — EU AI Act backlog reduction measurable',
+      E:'Chris Townsend (Group CIO) — enterprise tooling budget authority\nGünther Thallinger (CTO / Board Member Investments & AI) — AI mandate holder\nThird Party Risk Management committee — approves all external tooling',
+      D1:'Privacy Mode + SOC 2 + ZDR — meets BaFin and GDPR requirements ✓\nEU data residency documentation available ✓\nComplements existing Microsoft/Azure tooling ✓\nFull codebase context for insurance platform complexity ✓',
+      D2:'TPRM review → Security assessment → IT procurement → Legal (DPA + DPA addendum)\nPilot: Claims AI engineering team, 50 engineers, 4 weeks, 3 KPIs\nEst. cycle: 90 days to POC · 9–12 months to enterprise (FSI procurement pace)',
+      P:'Azure EA in place — Microsoft relationship established\nTPRM process: 60–90 day vendor assessment for any external tool touching code\nDPA required under GDPR — Cursor EU DPA template available for review\nBaFin compliance documentation may be required — Cursor security team can support',
+      I:'OpenAI partnership mandate: engineers must ship AI features faster than they currently can\nClaims AI codebase complexity is the hidden ceiling on every sprint\nEU AI Act compliance engineering is understaffed — throughput needs to improve',
+      C1:'Target: Staff/Principal Engineer on Claims AI or Insurance Platform team in Munich\nMost likely already exploring Cursor — Munich FSI tech community has high AI tool awareness\nEntry: Allianz Technology blog engagement + insurance tech community events in Munich',
+      C2:'GitHub Copilot (likely deployed via Azure EA)\nInternal AI tools (Allianz has history of building internal insurance AI)\nStrategy: position as FSI-governed complement to Copilot — the layer that handles system complexity Copilot cannot'
+    },
+    techContext:[
+      {category:'Cloud & Infrastructure',items:['Azure primary — deep Microsoft EA and OpenAI partnership','AWS for specific workloads and backup architecture','Allianz Technology GmbH — Munich-based internal IT organisation for DACH']},
+      {category:'Dev Tooling & Source Control',items:['GitHub Enterprise — confirmed source control','GitHub Copilot — likely bundled via Azure EA','VS Code primary IDE across engineering org']},
+      {category:'AI / ML & Insurance Platform',items:['OpenAI partnership — GPT models embedded across claims, underwriting, customer service','Azure AI services — cognitive search, document intelligence for claims processing','Allianz internal AI models — actuarial risk models, fraud detection, claims scoring']},
+      {category:'Where Cursor Fits',items:['VS Code native — zero friction adoption alongside existing Copilot','TPRM and BaFin-ready: Privacy Mode + SOC 2 + ZDR clears FSI governance bar','Fills Copilot\'s codebase context gap for complex insurance platform integration work']}
+    ]
+  }
+};
+
+function generateBrief() {
+  const input = document.getElementById('brief-company-input');
+  const company = input.value.trim();
+  if (!company) { input.focus(); return; }
+
+  const btn = document.getElementById('brief-go-btn');
+  const status = document.getElementById('brief-status');
+  btn.textContent = '...'; btn.disabled = true;
+  status.style.display = 'block';
+
+  const key = company.toLowerCase().replace(/\s+ag|\s+se|\s+group|\s+gmbh/g,'').trim()
+    .replace(/ä/g,'a').replace(/ö/g,'o').replace(/ü/g,'u').replace(/[^a-z]/g,'');
+
+  const brief = DACH_BRIEFS[key];
+  if (brief) {
+    status.textContent = '⟳ Loading ' + brief.company + ' brief...';
+    setTimeout(() => {
+      renderBrief(brief);
+      status.style.display = 'none';
+      btn.textContent = 'GO →'; btn.disabled = false;
+    }, 600);
+  } else {
+    status.textContent = '⚡ Available: BMW Group · Siemens AG · Allianz SE — try one of these';
+    btn.textContent = 'GO →'; btn.disabled = false;
+  }
+}
+
+function renderBrief(d) {
+  // Hero
+  document.getElementById('aibrief-hero-title').innerHTML = d.company + '<br><span style="color:var(--orange)">Account Brief</span>';
+  document.getElementById('aibrief-hero-sub').textContent = d.tagline + ' · ' + d.sector;
+
+  // Nav
+  document.getElementById('aibrief-nav-label').style.display = 'block';
+  document.getElementById('aibrief-nav-item').style.display = 'flex';
+  document.getElementById('aibrief-nav-label-text').textContent = d.company.split(' ')[0];
+
+  // Stats
+  document.getElementById('aibrief-stats').innerHTML = d.stats.map(s =>
+    '<div class="snapshot-stat"><div class="snapshot-stat-n">' + s.n + '</div><div class="snapshot-stat-l">' + s.l + '</div></div>'
+  ).join('');
+
+  // Use case nav + panels
+  const ucColors = ['var(--orange)','var(--teal)','var(--amber)','var(--blue)'];
+  const ucBgs = ['var(--orange3)','#0A1F18','#1F1A08','#0C1520'];
+  document.getElementById('aibrief-uc-nav').innerHTML = d.usecases.map((uc, i) =>
+    '<button onclick="showAiBriefUC(' + i + ')" id="aibuc-btn-' + i + '" class="uc-btn' + (i===0?' active':'') + '" style="font-size:11px;padding:7px 14px;border-radius:5px;cursor:pointer;border:1px solid ' + (i===0?ucColors[0]:'var(--border2)') + ';background:' + (i===0?ucBgs[0]:'var(--bg3)') + ';color:' + (i===0?ucColors[0]:'var(--muted)') + ';font-weight:' + (i===0?'600':'500') + ';transition:all .15s">' + uc.icon + ' ' + uc.label + '</button>'
+  ).join('');
+
+  document.getElementById('aibrief-uc-panels').innerHTML = d.usecases.map((uc, i) =>
+    '<div id="aibuc-panel-' + i + '" style="display:' + (i===0?'block':'none') + '">' +
+    '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">' +
+    '<div style="background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:16px">' +
+    '<div style="font-size:9px;font-weight:700;color:var(--dim);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border)">Business Context</div>' +
+    '<div style="font-size:13px;font-weight:600;color:var(--cream);margin-bottom:10px">' + uc.businessContext.heading + '</div>' +
+    '<div style="font-size:12px;color:var(--muted);line-height:1.6">' + uc.businessContext.bullets.map(b=>'· '+b).join('<br>') + '</div></div>' +
+    '<div style="background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:16px">' +
+    '<div style="font-size:9px;font-weight:700;color:var(--dim);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border)">IT Reality</div>' +
+    '<div style="font-size:13px;font-weight:600;color:var(--cream);margin-bottom:10px">' + uc.itReality.heading + '</div>' +
+    '<div style="font-size:12px;color:var(--muted);line-height:1.6">' + uc.itReality.bullets.map(b=>'· '+b).join('<br>') + '</div></div>' +
+    '<div style="background:var(--orange3);border:1px solid var(--orange2);border-radius:8px;padding:16px">' +
+    '<div style="font-size:9px;font-weight:700;color:var(--orange);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--orange2)">How Cursor Fits</div>' +
+    '<div style="font-size:13px;font-weight:600;color:var(--cream);margin-bottom:10px">' + uc.cursorFit.heading + '</div>' +
+    '<div style="font-size:12px;color:var(--cream);line-height:1.6">' + uc.cursorFit.bullets.map(b=>'· '+b).join('<br>') + '</div></div>' +
+    '</div></div>'
+  ).join('');
+
+  // MEDDPICC
+  const mKeys = [
+    {k:'M',label:'Metrics',col:'var(--orange)'},
+    {k:'E',label:'Economic Buyer',col:'var(--orange)'},
+    {k:'D1',label:'Decision Criteria',col:'var(--amber)'},
+    {k:'D2',label:'Decision Process',col:'var(--amber)'},
+    {k:'P',label:'Paper Process',col:'var(--blue)'},
+    {k:'I',label:'Identify Pain',col:'var(--orange)'},
+    {k:'C1',label:'Champion',col:'var(--teal)'},
+    {k:'C2',label:'Competition',col:'#B05050'}
+  ];
+  const mLetters = {M:'M',E:'E',D1:'D',D2:'D',P:'P',I:'I',C1:'C',C2:'C'};
+  document.getElementById('aibrief-medd-grid').innerHTML = mKeys.map(m =>
+    '<div class="medd-card" style="border-left:3px solid ' + m.col + '">' +
+    '<div class="medd-letter" style="color:' + m.col + '">' + mLetters[m.k] + '</div>' +
+    '<div class="medd-name">' + m.label + '</div>' +
+    '<p>' + (d.meddpicc[m.k]||'').split('\n').map(l=>'· '+l.replace(/^[·•\-]\s*/,'')).join('<br>') + '</p>' +
+    '</div>'
+  ).join('');
+
+  // Tech context
+  document.getElementById('aibrief-radar-content').innerHTML =
+    '<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">' +
+    d.techContext.map(tc =>
+      '<div style="background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:16px">' +
+      '<div style="font-size:10px;font-weight:700;color:var(--orange);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border)">' + tc.category + '</div>' +
+      tc.items.map(item => '<div style="display:flex;align-items:flex-start;gap:8px;padding:5px 0;border-bottom:1px solid var(--border)"><span style="color:var(--orange);font-size:10px;margin-top:3px">▪</span><span style="font-size:12px;color:var(--muted)">' + item + '</span></div>').join('') +
+      '</div>'
+    ).join('') + '</div>' +
+    '<div style="margin-top:14px;background:var(--bg2);border:1px solid var(--orange2);border-radius:8px;padding:16px">' +
+    '<div style="font-size:10px;font-weight:700;color:var(--orange);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:10px">Why Cursor · ' + d.company + '</div>' +
+    '<p style="font-size:13px;color:var(--muted);line-height:1.7">' + d.thesis + '</p>' +
+    '<div style="margin-top:10px;font-size:11px;color:var(--orange);font-family:var(--font-mono)">' + d.urgency + '</div>' +
+    (d.quote ? '<div style="margin-top:14px;border-left:3px solid var(--orange);padding:10px 14px;background:var(--orange3);border-radius:0 4px 4px 0"><div style="font-size:13px;color:var(--cream);font-style:italic;margin-bottom:6px">' + d.quote + '</div><div style="font-size:10px;color:var(--orange);font-weight:600">— ' + d.quoteExec + '</div></div>' : '') +
+    '</div>';
+
+  // Show section
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('aibrief').classList.add('active');
+  document.getElementById('aibrief-nav-item').classList.add('active');
+  window.scrollTo({top:0, behavior:'smooth'});
+
+  // Reset tabs
+  switchTab('aibrief','usecases');
+}
+
+function showAiBriefUC(idx) {
+  document.querySelectorAll('[id^="aibuc-panel-"]').forEach(p => p.style.display = 'none');
+  const panel = document.getElementById('aibuc-panel-' + idx);
+  if (panel) panel.style.display = 'block';
+  const ucColors = ['var(--orange)','var(--teal)','var(--amber)','var(--blue)'];
+  const ucBgs = ['var(--orange3)','#0A1F18','#1F1A08','#0C1520'];
+  document.querySelectorAll('[id^="aibuc-btn-"]').forEach((b, i) => {
+    b.style.background = 'var(--bg3)';
+    b.style.borderColor = 'var(--border2)';
+    b.style.color = 'var(--muted)';
+    b.style.fontWeight = '500';
+  });
+  const activeBtn = document.getElementById('aibuc-btn-' + idx);
+  if (activeBtn) {
+    activeBtn.style.background = ucBgs[idx] || 'var(--orange3)';
+    activeBtn.style.borderColor = ucColors[idx] || 'var(--orange)';
+    activeBtn.style.color = ucColors[idx] || 'var(--orange)';
+    activeBtn.style.fontWeight = '600';
+  }
+}
+
 // USE CASE SUB-NAV
 function showUseCase(id) {
   document.querySelectorAll('.uc-panel').forEach(p => p.style.display = 'none');
@@ -1318,7 +1635,7 @@ function switchTab(group, tab) {
   const panel = document.getElementById(`${group}-${tab}`);
   if (panel) panel.classList.add('active');
   const tabs = document.querySelectorAll(`#${group}-tabs .tab`);
-  const tabNames = {snapshot:['usecases','medd','radar','quadrant']};
+  const tabNames = {snapshot:['usecases','medd','radar','quadrant'], aibrief:['usecases','medd','radar']};
   const names = tabNames[group] || [];
   tabs.forEach((t,i) => {
     if (names[i] === tab) t.classList.add('active');
