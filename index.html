@@ -1328,6 +1328,12 @@ const top5 = [
     quote:"\u201cWe are a technology company that happens to be in banking.\u201d",
     quoteExec:"Richard Fairbank, CEO & Founder — Capital One Investor Day",
     quoteUrl:"https://investor.capitalone.com",
+    sdlc:[
+      { phase:"Plan", pain:"IBE is strong — provisions VPC, CI/CD, skeleton repo automatically", cursor:"Cursor adds codebase context IBE doesn't have: engineers understand what they're extending before writing" },
+      { phase:"Write", pain:"No codebase-aware AI confirmed — engineers navigate distributed microservices manually", cursor:"Full repo indexing: AI suggestions grounded in Capital One's actual architecture, not generic patterns" },
+      { phase:"Review", pain:"2,000+ agile teams generate PR volume that degrades review quality at scale", cursor:"Agent pre-reviews for consistency and architectural fit — human reviewers see better code" },
+      { phase:"Debug", pain:"P1s span dozens of repos — root cause mapping is manual before the fix is written", cursor:"System-level context maps the failure path; SREs reach remediation faster" },
+    ],
     signals:[
       { t:"AWS-primary · closed last DC 2021", url:"https://aws.amazon.com/solutions/case-studies/capital-one-all-in-on-aws/", v:true },
       { t:"17,000 technologists · 85% engineers", url:"https://www.cloudzero.com/blog/capital-one-aws/", v:true },
@@ -1342,6 +1348,12 @@ const top5 = [
     quote:"\"Software is now the primary way we deliver value to our clients. The firm\'s ability to attract and retain engineering talent is a direct input to our competitive position.\"",
     quoteExec:"Marco Argenti, CTO — Goldman Sachs Developer Conference 2024",
     quoteUrl:"https://aiexpert.network/goldman-sachs-ai/",
+    sdlc:[
+      { phase:"Plan", pain:"GS AI Platform with fine-tuned internal models is genuinely strong at planning and query routing", cursor:"Cursor adds real-time repo context inside the IDE — no context switch away from where engineers work" },
+      { phase:"Write", pain:"GS Developer Copilot lives in VS Code/JetBrains but operates at file level on a 30-year proprietary stack", cursor:"Full codebase indexing grounds suggestions in GS's actual architecture — not generic code patterns" },
+      { phase:"Review", pain:"Devin handles drudgery well — but engineers reviewing its output need system context to validate safely", cursor:"Cursor gives reviewing engineers the full-system view needed to supervise agent-generated code" },
+      { phase:"Debug", pain:"Distributed trading infrastructure — failure traces cross proprietary services with no AI-assisted navigation", cursor:"Agent maps failures across the full codebase; faster root cause on high-stakes systems" },
+    ],
     signals:[
       { t:"~12k developers · Devin AI pilot · 3-4x productivity expected", url:"https://www.cnbc.com/2025/07/11/goldman-sachs-autonomous-coder-pilot-marks-major-ai-milestone.html", v:true },
       { t:"GS AI Platform + developer copilot · ~20% productivity gain", url:"https://aiexpert.network/goldman-sachs-ai/", v:true },
@@ -1356,6 +1368,12 @@ const top5 = [
     quote:"\u201cWe spend $13 billion on technology \u2014 $4 billion on new initiatives alone. AI is transforming how we work and how we serve clients.\u201d",
     quoteExec:"Brian Moynihan, CEO — BofA Investor Day 2025",
     quoteUrl:"https://www.pymnts.com/artificial-intelligence-2/2025/bank-of-america-ceo-says-ai-is-transforming-how-banks-work",
+    sdlc:[
+      { phase:"Plan", pain:"Strong Responsible AI framework — 270 models governed well; developer planning tooling not confirmed", cursor:"Cursor adds pre-build codebase navigation: engineers map COBOL integration risk before writing new code" },
+      { phase:"Write", pain:"17k programmers on AI tools — but file-level assistance can't handle cross-system COBOL refactoring", cursor:"Agent mode executes multi-file refactoring that file-level tools can't attempt" },
+      { phase:"Test", pain:"Decades of legacy systems with minimal test coverage — adding AI features risks breaking undocumented behaviour", cursor:"Cursor generates tests retroactively for legacy code and validates new code against existing patterns" },
+      { phase:"Ramp", pain:"35,000+ engineers across fragmented legacy stack — new engineers take months to contribute meaningfully", cursor:"Legacy codebase becomes queryable — ramp compresses from months to weeks" },
+    ],
     signals:[
       { t:"$13B tech spend · $4B new initiatives 2025 · Moynihan investor day", url:"https://www.pymnts.com/artificial-intelligence-2/2025/bank-of-america-ceo-says-ai-is-transforming-how-banks-work", v:true },
       { t:"17,000 programmers using AI coding tools · Q2 2025 earnings", url:"https://www.ciodive.com/news/bank-of-america-ai-gains-bny-goldman-sachs-wells-fargo/753264/", v:true },
@@ -1370,6 +1388,12 @@ const top5 = [
     quote:"\u201cTechnology is such an important part of the transformation for Walmart and the industry as a whole \u2014 this is something I could not refuse given the amount of scale and impact.\u201d",
     quoteExec:"Suresh Kumar, EVP & Global CTO — NRF Foundation Honors interview",
     quoteUrl:"https://nrffoundation.org/blog/sureshkumar",
+    sdlc:[
+      { phase:"Plan", pain:"Wibey is genuinely strong — scaffolds projects, generates tailored starter kits, routes across 200+ agents", cursor:"Cursor picks up where Wibey stops: codebase context inside the IDE while engineers build what Wibey scoped" },
+      { phase:"Write", pain:"After the starter kit, engineers write in a complex proprietary agent stack with no codebase-aware AI", cursor:"Full repo indexing grounds suggestions in Walmart's actual WCNP architecture, not generic patterns" },
+      { phase:"Review", pain:"200+ agents built by 20,000+ engineers — inconsistency and duplication risk across the agent library", cursor:"Agent reviews new code against the full agent library — flags conflicts before they reach production" },
+      { phase:"Debug", pain:"270M weekly customers — distributed failures under retail load are high-stakes and time-critical", cursor:"System-level context accelerates root cause across Walmart's proprietary cloud infrastructure" },
+    ],
     signals:[
       { t:"WCNP + multi-cloud Azure/GCP · avoids AWS (Amazon = competitor)", url:"https://www.techtarget.com/searchcloudcomputing/news/252522631/Walmarts-multi-cloud-strategy-cuts-millions-in-IT-costs", v:true },
       { t:"WIBEY developer AI agent · launched Converge 2025 · VS Code native", url:"https://tech.walmart.com/content/walmart-global-tech/en_us/blog/post/wibey-announcement.html", v:true },
@@ -1384,6 +1408,12 @@ const top5 = [
     quote:"\u201cAny executive who thinks artificial intelligence won\u2019t disrupt their business is naive.\u201d",
     quoteExec:"John Stankey, Chairman & CEO — TIME Magazine, March 2026",
     quoteUrl:"https://time.com/article/2026/03/22/at-t-ceo-john-stankey-on-ai-the-return-to-offices-and-surveillance-law/",
+    sdlc:[
+      { phase:"Plan", pain:"Ask AT&T is broad and genuinely useful for 100k employees — developer planning not its primary strength", cursor:"Cursor adds pre-build codebase navigation: engineers map BSS/OSS impact before touching 40-year legacy code" },
+      { phase:"Write", pain:"Ask AT&T coding assistance is general-purpose — can't reason about proprietary telco billing or network management logic", cursor:"Full codebase context means suggestions reflect AT&T's actual telco stack, not generic patterns" },
+      { phase:"Debug", pain:"Palantir ontology is strong for network-level operations — code-level debugging across BSS/OSS still manual", cursor:"Agent maps failures across the full code graph; SREs diagnose faster on infrastructure carrying 614 PB/day" },
+      { phase:"Govern", pain:"CISO Rich Baich requires every AI tool to pass SDLC governance — ungoverned tools are a compliance risk", cursor:"Cursor Enterprise: Privacy Mode org-wide, SOC 2, ZDR, audit logs — built to clear Baich's framework" },
+    ],
     signals:[
       { t:"Software-defined core network · 5G Open RAN $14B investment to 2026", url:"https://sustainability.att.com/priority-topics/innovation-technology", v:true },
       { t:"AI data tools ranked #1 GenAI BIRD leaderboard end of 2024", url:"https://sustainability.att.com/priority-topics/innovation-technology", v:true },
@@ -1411,8 +1441,28 @@ function buildTop5() {
       </div>
       <div style="display:grid;grid-template-columns:3fr 2fr;gap:0">
         <div style="padding:16px 20px;border-right:1px solid var(--border)">
-          <div style="font-size:9px;font-weight:600;color:var(--dim);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px">Cursor thesis</div>
+          <div style="font-size:9px;font-weight:600;color:var(--dim);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px">Account thesis</div>
           <p style="font-size:12px;color:var(--muted);line-height:1.65;margin-bottom:14px">${a.thesis}</p>
+
+          <div style="margin-bottom:14px">
+            <div style="display:grid;grid-template-columns:60px 1fr 1fr;gap:0;border:1px solid var(--border);border-radius:6px;overflow:hidden">
+              <div style="padding:6px 8px;background:var(--bg4);border-right:1px solid var(--border);border-bottom:1px solid var(--border)"></div>
+              <div style="padding:6px 10px;background:var(--bg4);border-right:1px solid var(--border);border-bottom:1px solid var(--border)"><span style="font-size:9px;font-weight:600;color:var(--dim);letter-spacing:0.1em;text-transform:uppercase">Where it breaks down</span></div>
+              <div style="padding:6px 10px;background:${bgMap[a.color]};border-bottom:1px solid var(--border)"><span style="font-size:9px;font-weight:600;color:${colorMap[a.color]};letter-spacing:0.1em;text-transform:uppercase">How Cursor fits</span></div>
+              ${a.sdlc.map((row, i) => `
+                <div style="padding:7px 8px;background:var(--bg3);border-right:1px solid var(--border);${i < a.sdlc.length-1 ? 'border-bottom:1px solid var(--border);' : ''}display:flex;align-items:center">
+                  <span style="font-size:9px;font-weight:700;color:${colorMap[a.color]};letter-spacing:0.06em;text-transform:uppercase">${row.phase}</span>
+                </div>
+                <div style="padding:7px 10px;border-right:1px solid var(--border);${i < a.sdlc.length-1 ? 'border-bottom:1px solid var(--border);' : ''}">
+                  <span style="font-size:10px;color:var(--muted);line-height:1.45">${row.pain}</span>
+                </div>
+                <div style="padding:7px 10px;background:${bgMap[a.color]}55;${i < a.sdlc.length-1 ? 'border-bottom:1px solid var(--border);' : ''}">
+                  <span style="font-size:10px;color:var(--cream);line-height:1.45">${row.cursor}</span>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+
           <div style="border-left:3px solid ${colorMap[a.color]};padding:10px 14px;background:${bgMap[a.color]};border-radius:0 4px 4px 0">
             <div style="font-size:13px;color:var(--cream);line-height:1.6;font-style:italic;margin-bottom:8px">${a.quote}</div>
             <div style="display:flex;align-items:center;gap:6px">
