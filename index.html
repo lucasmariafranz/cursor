@@ -35,7 +35,7 @@
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--cream);font-family:var(--font-body);font-size:14px;line-height:1.6;display:flex;min-height:100vh;overflow-x:hidden}
+body{background:var(--bg);color:var(--cream);font-family:var(--font-body);font-size:15px;line-height:1.6;display:flex;min-height:100vh;overflow-x:hidden}
 
 /* SIDEBAR */
 .sidebar{width:220px;min-height:100vh;background:var(--bg2);border-right:1px solid var(--border);position:fixed;top:0;left:0;z-index:100;display:flex;flex-direction:column;padding:0 0 24px}
@@ -46,16 +46,16 @@ body{background:var(--bg);color:var(--cream);font-family:var(--font-body);font-s
 .cube-right{width:10px;height:12px;background:var(--orange2);margin-top:-1px}
 .cube-left{width:10px;height:12px;background:#D96A42;margin-top:-1px}
 .logo-text{font-size:16px;font-weight:700;color:var(--cream);letter-spacing:0.08em}
-.logo-sub{font-size:10px;color:var(--muted);font-family:var(--font-mono);letter-spacing:0.05em;line-height:1.5}
-.nav-section-label{font-size:9px;font-weight:600;color:var(--dim);letter-spacing:0.12em;padding:16px 18px 6px;text-transform:uppercase}
-.nav-item{display:flex;align-items:center;gap:10px;padding:8px 18px;cursor:pointer;transition:all .15s;border-left:2px solid transparent;color:var(--muted);font-size:12px;font-weight:500}
+.logo-sub{font-size:11px;color:var(--muted);font-family:var(--font-mono);letter-spacing:0.05em;line-height:1.5}
+.nav-section-label{font-size:10px;font-weight:600;color:var(--dim);letter-spacing:0.12em;padding:16px 18px 6px;text-transform:uppercase}
+.nav-item{display:flex;align-items:center;gap:10px;padding:8px 18px;cursor:pointer;transition:all .15s;border-left:2px solid transparent;color:var(--muted);font-size:13px;font-weight:500}
 .nav-item:hover{color:var(--cream);background:var(--bg3)}
 .nav-item.active{color:var(--orange);border-left-color:var(--orange);background:var(--orange3)}
 .nav-icon{width:14px;height:14px;flex-shrink:0;opacity:0.7}
 .nav-item.active .nav-icon{opacity:1}
 .sidebar-footer{margin-top:auto;padding:14px 18px;border-top:1px solid var(--border)}
-.sidebar-footer-name{font-size:11px;font-weight:600;color:var(--cream)}
-.sidebar-footer-role{font-size:10px;color:var(--muted)}
+.sidebar-footer-name{font-size:12px;font-weight:600;color:var(--cream)}
+.sidebar-footer-role{font-size:11px;color:var(--muted)}
 
 /* MAIN */
 .main{margin-left:220px;flex:1;min-height:100vh}
@@ -65,7 +65,7 @@ body{background:var(--bg);color:var(--cream);font-family:var(--font-body);font-s
 
 /* HERO */
 .hero{background:var(--bg);border-bottom:1px solid var(--border);padding:48px 52px 40px}
-.hero-tag{display:inline-flex;align-items:center;gap:8px;background:var(--orange3);border:1px solid var(--orange2);border-radius:20px;padding:4px 12px;font-size:10px;font-family:var(--font-mono);color:var(--orange);letter-spacing:0.08em;margin-bottom:20px}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;background:var(--orange3);border:1px solid var(--orange2);border-radius:20px;padding:4px 12px;font-size:11px;font-family:var(--font-mono);color:var(--orange);letter-spacing:0.08em;margin-bottom:20px}
 .hero-tag-dot{width:6px;height:6px;background:var(--orange);border-radius:50%;animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 .hero h1{font-size:32px;font-weight:700;line-height:1.2;color:var(--cream);margin-bottom:10px;max-width:640px}
@@ -74,7 +74,7 @@ body{background:var(--bg);color:var(--cream);font-family:var(--font-body);font-s
 .hero-meta{display:flex;gap:24px;flex-wrap:wrap}
 .hero-stat{display:flex;flex-direction:column;gap:2px}
 .hero-stat-n{font-size:20px;font-weight:700;color:var(--orange);font-family:var(--font-mono)}
-.hero-stat-l{font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:0.08em}
+.hero-stat-l{font-size:11px;color:var(--dim);text-transform:uppercase;letter-spacing:0.08em}
 .hero-pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}
 .pill{font-size:10px;padding:3px 10px;border-radius:4px;font-family:var(--font-mono);border:1px solid var(--border2);color:var(--muted)}
 .pill.orange{background:var(--orange3);border-color:var(--orange2);color:var(--orange)}
@@ -83,7 +83,7 @@ body{background:var(--bg);color:var(--cream);font-family:var(--font-body);font-s
 .page-content{padding:32px 52px 48px}
 .page-header{margin-bottom:28px}
 .page-header h2{font-size:22px;font-weight:700;color:var(--cream)}
-.page-header p{font-size:13px;color:var(--muted);margin-top:4px}
+.page-header p{font-size:14px;color:var(--muted);margin-top:4px}
 .section-divider{height:1px;background:var(--border);margin:28px 0}
 
 /* CARDS */
@@ -91,9 +91,9 @@ body{background:var(--bg);color:var(--cream);font-family:var(--font-body);font-s
 .card-grid{display:grid;gap:14px}
 .card-grid-2{grid-template-columns:1fr 1fr}
 .card-grid-3{grid-template-columns:1fr 1fr 1fr}
-.card-label{font-size:9px;font-weight:600;color:var(--dim);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:8px}
-.card h3{font-size:13px;font-weight:600;color:var(--cream);margin-bottom:6px}
-.card p{font-size:12px;color:var(--muted);line-height:1.6}
+.card-label{font-size:10px;font-weight:600;color:var(--dim);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:8px}
+.card h3{font-size:14px;font-weight:600;color:var(--cream);margin-bottom:6px}
+.card p{font-size:13px;color:var(--muted);line-height:1.6}
 
 /* FUNNEL */
 .funnel{display:flex;flex-direction:column;gap:0}
@@ -101,11 +101,11 @@ body{background:var(--bg);color:var(--cream);font-family:var(--font-body);font-s
 .funnel-bar{display:flex;align-items:center;gap:14px;padding:14px 18px;background:var(--bg3);border:1px solid var(--border2);border-radius:6px;margin:0 auto;transition:background .15s}
 .funnel-bar:hover{background:var(--bg4)}
 .funnel-n{font-size:28px;font-weight:700;font-family:var(--font-mono);min-width:64px;text-align:center}
-.funnel-info h4{font-size:12px;font-weight:600;color:var(--cream)}
-.funnel-info p{font-size:11px;color:var(--muted);margin-top:2px}
+.funnel-info h4{font-size:13px;font-weight:600;color:var(--cream)}
+.funnel-info p{font-size:12px;color:var(--muted);margin-top:2px}
 .funnel-arrow{display:flex;justify-content:center;padding:6px 0;color:var(--dim);font-size:16px}
-.funnel-elim{background:var(--bg);border:1px solid var(--border);border-left:3px solid var(--red);border-radius:4px;padding:8px 14px;margin:4px 0;font-size:11px;color:var(--dim)}
-.funnel-elim strong{color:#B05050;font-size:10px;display:block;margin-bottom:2px}
+.funnel-elim{background:var(--bg);border:1px solid var(--border);border-left:3px solid var(--red);border-radius:4px;padding:8px 14px;margin:4px 0;font-size:12px;color:var(--dim)}
+.funnel-elim strong{color:#B05050;font-size:11px;display:block;margin-bottom:2px}
 
 /* SIGNAL CARDS */
 .signal-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:14px 16px;cursor:pointer;transition:all .15s;position:relative;overflow:hidden}
@@ -117,79 +117,79 @@ body{background:var(--bg);color:var(--cream);font-family:var(--font-body);font-s
 .signal-card.teal::before{background:var(--teal)}
 .signal-card.dim::before{background:var(--dim)}
 .signal-header{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
-.signal-header h4{font-size:12px;font-weight:600;color:var(--cream);line-height:1.4}
-.signal-badge{font-size:9px;padding:2px 8px;border-radius:3px;font-family:var(--font-mono);white-space:nowrap;flex-shrink:0}
+.signal-header h4{font-size:13px;font-weight:600;color:var(--cream);line-height:1.4}
+.signal-badge{font-size:10px;padding:2px 8px;border-radius:3px;font-family:var(--font-mono);white-space:nowrap;flex-shrink:0}
 .signal-badge.orange{background:var(--orange3);color:var(--orange);border:1px solid var(--orange2)}
 .signal-badge.amber{background:#1F1A08;color:var(--amber);border:1px solid #3D3310}
 .signal-badge.blue{background:#0C1520;color:var(--blue);border:1px solid #1E2A40}
 .signal-badge.teal{background:#0A1F18;color:var(--teal);border:1px solid #143D2E}
 .signal-badge.dim{background:var(--bg3);color:var(--dim);border:1px solid var(--border2)}
-.signal-meta{font-size:11px;color:var(--muted);margin-top:6px}
+.signal-meta{font-size:12px;color:var(--muted);margin-top:6px}
 .signal-expand{margin-top:10px;padding-top:10px;border-top:1px solid var(--border);display:none}
 .signal-expand.open{display:block}
-.signal-expand p{font-size:11px;color:var(--muted);line-height:1.65}
-.signal-link{display:inline-flex;align-items:center;gap:4px;font-size:10px;color:var(--orange);font-family:var(--font-mono);margin-top:8px;text-decoration:none}
+.signal-expand p{font-size:12px;color:var(--muted);line-height:1.65}
+.signal-link{display:inline-flex;align-items:center;gap:4px;font-size:11px;color:var(--orange);font-family:var(--font-mono);margin-top:8px;text-decoration:none}
 .signal-link:hover{text-decoration:underline}
-.expand-toggle{font-size:10px;color:var(--dim);font-family:var(--font-mono);display:flex;align-items:center;gap:4px;margin-top:6px}
+.expand-toggle{font-size:11px;color:var(--dim);font-family:var(--font-mono);display:flex;align-items:center;gap:4px;margin-top:6px}
 
 /* SCORE BAR */
 .score-row{display:flex;align-items:center;gap:10px;margin-bottom:8px}
-.score-label{font-size:11px;color:var(--muted);width:180px;flex-shrink:0}
+.score-label{font-size:12px;color:var(--muted);width:180px;flex-shrink:0}
 .score-track{flex:1;height:6px;background:var(--border2);border-radius:3px;overflow:hidden}
 .score-fill{height:100%;border-radius:3px;transition:width .6s ease}
-.score-val{font-size:11px;font-weight:600;font-family:var(--font-mono);width:32px;text-align:right}
+.score-val{font-size:12px;font-weight:600;font-family:var(--font-mono);width:32px;text-align:right}
 
 /* PERSONA CARDS */
 .persona-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden}
 .persona-header{padding:14px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px}
 .persona-avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0}
-.persona-title{font-size:12px;font-weight:600;color:var(--cream)}
-.persona-role{font-size:10px;color:var(--muted)}
+.persona-title{font-size:13px;font-weight:600;color:var(--cream)}
+.persona-role{font-size:11px;color:var(--muted)}
 .persona-body{padding:14px 16px}
 .persona-row{display:flex;gap:6px;margin-bottom:6px}
-.persona-row-label{font-size:10px;color:var(--dim);width:70px;flex-shrink:0;padding-top:1px}
-.persona-row-val{font-size:11px;color:var(--muted);line-height:1.5}
-.persona-tag{display:inline-block;font-size:9px;padding:2px 7px;border-radius:3px;margin:2px 2px 0 0;font-family:var(--font-mono)}
+.persona-row-label{font-size:11px;color:var(--dim);width:70px;flex-shrink:0;padding-top:1px}
+.persona-row-val{font-size:12px;color:var(--muted);line-height:1.5}
+.persona-tag{display:inline-block;font-size:10px;padding:2px 7px;border-radius:3px;margin:2px 2px 0 0;font-family:var(--font-mono)}
 
 /* TIMELINE */
 .timeline{position:relative;padding-left:28px}
 .timeline::before{content:'';position:absolute;left:8px;top:8px;bottom:8px;width:1px;background:var(--border)}
 .timeline-item{position:relative;margin-bottom:20px}
 .timeline-dot{position:absolute;left:-24px;top:4px;width:10px;height:10px;border-radius:50%;border:2px solid var(--bg2)}
-.timeline-item h4{font-size:12px;font-weight:600;color:var(--cream);margin-bottom:4px}
-.timeline-item p{font-size:11px;color:var(--muted);line-height:1.6}
+.timeline-item h4{font-size:13px;font-weight:600;color:var(--cream);margin-bottom:4px}
+.timeline-item p{font-size:12px;color:var(--muted);line-height:1.6}
 
 /* OUTREACH */
 .outreach-box{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden}
 .outreach-header{padding:12px 18px;background:var(--bg3);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
-.outreach-header span{font-size:11px;color:var(--muted);font-family:var(--font-mono)}
-.outreach-body{padding:20px 22px;font-size:12px;color:var(--muted);line-height:1.8;white-space:pre-line;word-break:break-word}
+.outreach-header span{font-size:12px;color:var(--muted);font-family:var(--font-mono)}
+.outreach-body{padding:20px 22px;font-size:13px;color:var(--muted);line-height:1.8;white-space:pre-line;word-break:break-word}
 .outreach-body strong{color:var(--cream)}
 
 /* MEDDPICC */
 .medd-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .medd-card{background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:14px}
 .medd-letter{font-size:18px;font-weight:700;font-family:var(--font-mono);margin-bottom:4px}
-.medd-name{font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px}
-.medd-card p{font-size:11px;color:var(--muted);line-height:1.6}
+.medd-name{font-size:11px;color:var(--dim);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px}
+.medd-card p{font-size:12px;color:var(--muted);line-height:1.6}
 
 /* 90 DAY */
 .phase-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:16px}
 .phase-header{padding:14px 20px;display:flex;align-items:center;gap:14px;border-bottom:1px solid var(--border)}
 .phase-n{font-size:28px;font-weight:700;font-family:var(--font-mono)}
-.phase-header h3{font-size:14px;font-weight:600;color:var(--cream)}
-.phase-header p{font-size:11px;color:var(--muted);margin-top:2px}
+.phase-header h3{font-size:15px;font-weight:600;color:var(--cream)}
+.phase-header p{font-size:12px;color:var(--muted);margin-top:2px}
 .phase-body{padding:16px 20px}
 .phase-col-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
-.phase-col h5{font-size:10px;font-weight:600;color:var(--dim);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.phase-col h5{font-size:11px;font-weight:600;color:var(--dim);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid var(--border)}
 .phase-col ul{list-style:none}
-.phase-col ul li{font-size:11px;color:var(--muted);padding:4px 0;border-bottom:1px solid var(--border);line-height:1.5}
+.phase-col ul li{font-size:12px;color:var(--muted);padding:4px 0;border-bottom:1px solid var(--border);line-height:1.5}
 .phase-col ul li:last-child{border-bottom:none}
-.phase-col ul li::before{content:'→';color:var(--orange);margin-right:6px;font-size:10px}
+.phase-col ul li::before{content:'→';color:var(--orange);margin-right:6px;font-size:11px}
 .kpi-row{display:flex;gap:12px;flex-wrap:wrap;padding:12px 20px;background:var(--bg3);border-top:1px solid var(--border)}
 .kpi{background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:8px 14px;text-align:center}
 .kpi-n{font-size:18px;font-weight:700;font-family:var(--font-mono)}
-.kpi-l{font-size:9px;color:var(--dim);text-transform:uppercase;letter-spacing:0.08em;margin-top:2px}
+.kpi-l{font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:0.08em;margin-top:2px}
 
 /* PROGRESSIVE DISCLOSURE */
 .pd-item{border-bottom:1px solid var(--border);cursor:pointer;transition:background .12s}
@@ -198,25 +198,25 @@ body{background:var(--bg);color:var(--cream);font-family:var(--font-body);font-s
 .pd-summary{display:flex;align-items:baseline;gap:10px;padding:10px 0}
 .pd-arrow{font-size:14px;color:var(--orange);font-family:var(--font-mono);transition:transform .2s;display:inline-block;min-width:10px;line-height:1}
 .pd-item.open .pd-arrow{transform:rotate(90deg)}
-.pd-week{font-size:9px;font-family:var(--font-mono);font-weight:600;color:var(--dim);letter-spacing:0.1em;text-transform:uppercase;width:52px;min-width:52px;flex-shrink:0;padding-top:1px}
-.pd-text{font-size:12px;font-weight:500;color:var(--cream);line-height:1.5;flex:1;transition:color .12s}
-.pd-detail{display:none;font-size:11px;color:var(--muted);line-height:1.7;padding:0 0 12px 54px;animation:fadeIn .15s ease}
+.pd-week{font-size:10px;font-family:var(--font-mono);font-weight:600;color:var(--dim);letter-spacing:0.1em;text-transform:uppercase;width:52px;min-width:52px;flex-shrink:0;padding-top:1px}
+.pd-text{font-size:13px;font-weight:500;color:var(--cream);line-height:1.5;flex:1;transition:color .12s}
+.pd-detail{display:none;font-size:12px;color:var(--muted);line-height:1.7;padding:0 0 12px 54px;animation:fadeIn .15s ease}
 .pd-item.open .pd-detail{display:block}
 
 /* COMPANY SNAPSHOT */
 .snapshot-grid{display:grid;grid-template-columns:2fr 1fr;gap:16px;margin-bottom:16px}
 .snapshot-stat{text-align:center;padding:14px 10px;background:var(--bg3);border-radius:6px}
 .snapshot-stat-n{font-size:22px;font-weight:700;font-family:var(--font-mono);color:var(--orange);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.snapshot-stat-l{font-size:9px;color:var(--dim);text-transform:uppercase;letter-spacing:0.08em;margin-top:4px}
+.snapshot-stat-l{font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:0.08em;margin-top:4px}
 .value-driver{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--border)}
 .value-driver:last-child{border-bottom:none}
 .vd-icon{width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;margin-top:1px}
-.vd-title{font-size:12px;font-weight:600;color:var(--cream);margin-bottom:3px}
-.vd-desc{font-size:11px;color:var(--muted);line-height:1.55}
+.vd-title{font-size:13px;font-weight:600;color:var(--cream);margin-bottom:3px}
+.vd-desc{font-size:12px;color:var(--muted);line-height:1.55}
 
 /* TABS */
 .tabs{display:flex;gap:2px;background:var(--bg3);border-radius:6px;padding:3px;margin-bottom:18px;border:1px solid var(--border)}
-.tab{font-size:11px;padding:6px 14px;border-radius:4px;cursor:pointer;color:var(--muted);transition:all .15s;font-weight:500}
+.tab{font-size:12px;padding:6px 14px;border-radius:4px;cursor:pointer;color:var(--muted);transition:all .15s;font-weight:500}
 .tab.active{background:var(--bg2);color:var(--cream);border:1px solid var(--border2)}
 .tab:hover:not(.active){color:var(--cream)}
 .tab-panel{display:none}
@@ -231,8 +231,8 @@ body{background:var(--bg);color:var(--cream);font-family:var(--font-body);font-s
 .org-node{background:var(--bg3);border:1px solid var(--border2);border-radius:6px;padding:10px 14px;text-align:center;min-width:130px}
 .org-node.highlighted{border-color:var(--orange);background:var(--orange3)}
 .org-node.teal{border-color:var(--teal);background:#0A1F18}
-.org-node h5{font-size:11px;font-weight:600;color:var(--cream)}
-.org-node p{font-size:10px;color:var(--muted);margin-top:2px}
+.org-node h5{font-size:12px;font-weight:600;color:var(--cream)}
+.org-node p{font-size:11px;color:var(--muted);margin-top:2px}
 .org-node.highlighted h5{color:var(--orange)}
 .org-node.teal h5{color:var(--teal)}
 
@@ -255,7 +255,7 @@ body{background:var(--bg);color:var(--cream);font-family:var(--font-body);font-s
 }
 
 /* UTIL */
-.tag{display:inline-block;font-size:9px;padding:2px 8px;border-radius:3px;font-family:var(--font-mono);border:1px solid var(--border2);color:var(--muted);margin:2px 2px 0 0}
+.tag{display:inline-block;font-size:10px;padding:2px 8px;border-radius:3px;font-family:var(--font-mono);border:1px solid var(--border2);color:var(--muted);margin:2px 2px 0 0}
 .highlight{color:var(--orange)}
 .badge-teal{background:#0A1F18;color:var(--teal);border:1px solid #143D2E}
 .badge-amber{background:#1F1A08;color:var(--amber);border:1px solid #3D3310}
@@ -541,124 +541,148 @@ hr.section-hr{border:none;border-top:1px solid var(--border);margin:24px 0}
         </div>
 
         <div class="tabs" id="snapshot-tabs">
-          <div class="tab active" onclick="switchTab('snapshot','business')" style="color:var(--orange)">Business Strategy</div>
-          <div class="tab" onclick="switchTab('snapshot','it')" style="color:var(--orange)">IT Initiatives</div>
-          <div class="tab" onclick="switchTab('snapshot','cursor')" style="color:var(--orange)">Cursor Fit</div>
+          <div class="tab active" onclick="switchTab('snapshot','usecases')" style="color:var(--orange)">Identified Use Cases</div>
           <div class="tab" onclick="switchTab('snapshot','medd')" style="color:var(--orange)">MEDDPICC</div>
           <div class="tab" onclick="switchTab('snapshot','radar')" style="color:var(--orange)">Tech Radar</div>
           <div class="tab" onclick="switchTab('snapshot','quadrant')" style="color:var(--orange)">AI Tool Landscape</div>
         </div>
 
-        <div id="snapshot-business" class="tab-panel active">
-          <div class="value-driver">
-            <div class="vd-icon" style="background:var(--orange3)">🏦</div>
-            <div><div class="vd-title">Discover acquisition — $51.8B deal, 3,000+ engineers onboarding now</div><div class="vd-desc">Closed May 2025. Capital One acquired Discover Financial Services for $51.8B, adding 100M+ combined customers, the Discover + PULSE + Diners Club global payment networks, and ~3,000 Discover engineers who now need to ramp on an unfamiliar codebase. Modelled synergies: $2.7B expense + $1.2B network revenue by 2027E. Speed of engineer onboarding directly determines speed of synergy realisation — every week of ramp delay has a measurable dollar cost against a $2.5B+ target.</div></div>
+        <div id="snapshot-usecases" class="tab-panel active">
+          <!-- Use case sub-nav -->
+          <div style="display:flex;gap:6px;margin-bottom:20px;flex-wrap:wrap">
+            <button onclick="showUseCase('uc-acq')" id="uc-btn-acq" class="uc-btn active" style="font-size:11px;padding:7px 14px;border-radius:5px;cursor:pointer;border:1px solid var(--orange);background:var(--orange3);color:var(--orange);font-weight:600;transition:all .15s">🏦 Acquisition Integration</button>
+            <button onclick="showUseCase('uc-agent')" id="uc-btn-agent" class="uc-btn" style="font-size:11px;padding:7px 14px;border-radius:5px;cursor:pointer;border:1px solid var(--border2);background:var(--bg3);color:var(--muted);font-weight:500;transition:all .15s">🤖 Agentic Platform Engineering</button>
+            <button onclick="showUseCase('uc-velocity')" id="uc-btn-velocity" class="uc-btn" style="font-size:11px;padding:7px 14px;border-radius:5px;cursor:pointer;border:1px solid var(--border2);background:var(--bg3);color:var(--muted);font-weight:500;transition:all .15s">⚡ Developer Velocity</button>
+            <button onclick="showUseCase('uc-security')" id="uc-btn-security" class="uc-btn" style="font-size:11px;padding:7px 14px;border-radius:5px;cursor:pointer;border:1px solid var(--border2);background:var(--bg3);color:var(--muted);font-weight:500;transition:all .15s">🔒 Security & Governance</button>
           </div>
-          <div class="value-driver">
-            <div class="vd-icon" style="background:#0C1520">💳</div>
-            <div><div class="vd-title">Brex acquisition — $2.58B, January 2026 · more engineers inbound</div><div class="vd-desc">Capital One agreed January 22, 2026 to acquire Brex Inc. for $2.58B cash + ~10.6M shares. Brex invented the integrated combination of business credit cards, spend management software, and banking in a single platform. A second wave of engineers onboarding to Capital One's codebase is now imminent. The pattern is clear: Capital One is building the largest card network in the US through acquisition, and engineering integration velocity is the critical variable.</div></div>
+
+          <!-- USE CASE 1: Acquisition Integration -->
+          <div id="uc-acq" class="uc-panel">
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
+              <div style="background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:16px">
+                <div style="font-size:9px;font-weight:700;color:var(--dim);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border)">Business Context</div>
+                <div style="font-size:13px;font-weight:600;color:var(--cream);margin-bottom:10px">$54.4B in acquisitions · Two engineer waves inbound</div>
+                <div style="font-size:12px;color:var(--muted);line-height:1.6">· Discover closed May 2025 — 3,000 engineers onboarding now<br>· Brex closes 2026 — second wave imminent<br>· $2.7B expense + $1.2B network revenue synergy by 2027E<br>· Every week of slow ramp is a measurable cost against target</div>
+              </div>
+              <div style="background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:16px">
+                <div style="font-size:9px;font-weight:700;color:var(--dim);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border)">IT Reality</div>
+                <div style="font-size:13px;font-weight:600;color:var(--cream);margin-bottom:10px">IBE provisions the repo — then stops</div>
+                <div style="font-size:12px;color:var(--muted);line-height:1.6">· Developer Academy ramp: 3–6 months per engineer<br>· IBE generates skeleton repo — codebase navigation left to engineer<br>· No AI tool indexes the full Capital One or Discover codebase today<br>· 3,000 engineers reading stale docs and asking senior colleagues</div>
+              </div>
+              <div style="background:var(--orange3);border:1px solid var(--orange2);border-radius:8px;padding:16px">
+                <div style="font-size:9px;font-weight:700;color:var(--orange);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--orange2)">How Cursor Fits</div>
+                <div style="font-size:13px;font-weight:600;color:var(--cream);margin-bottom:10px">Codebase becomes queryable on day one</div>
+                <div style="font-size:12px;color:var(--cream);line-height:1.6">· Engineers ask the codebase instead of guessing<br>· Ramp compresses from months to weeks<br>· Works across both Capital One and Discover repos simultaneously<br>· Most financially quantifiable Cursor argument at this account</div>
+              </div>
+            </div>
           </div>
-          <div class="value-driver">
-            <div class="vd-icon" style="background:#0A1F18">🤖</div>
-            <div><div class="vd-title">Agentic AI as competitive moat — #2 globally in AI talent (Evident AI 2024)</div><div class="vd-desc">Capital One ranked #2 globally in AI talent in financial services by Evident Insights for three consecutive years. First US bank to close all data centres (2021) and go all-in on AWS. Agentic AI platform in production 2025 (Chat Concierge — car-buying). CEO Fairbank: "We are a technology company that does banking." This is not a positioning statement — it's an operating model that makes developer velocity a direct financial metric.</div></div>
+
+          <!-- USE CASE 2: Agentic Platform Engineering -->
+          <div id="uc-agent" class="uc-panel" style="display:none">
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
+              <div style="background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:16px">
+                <div style="font-size:9px;font-weight:700;color:var(--dim);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border)">Business Context</div>
+                <div style="font-size:13px;font-weight:600;color:var(--cream);margin-bottom:10px">AI is the competitive moat — not just a feature</div>
+                <div style="font-size:12px;color:var(--muted);line-height:1.6">· #2 globally in FSI AI talent — Evident Insights, 3 consecutive years<br>· Agentic AI in production 2025: Chat Concierge car-buying platform<br>· CEO Fairbank: "We are a technology company that does banking"<br>· Engineering velocity = revenue velocity at Capital One</div>
+              </div>
+              <div style="background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:16px">
+                <div style="font-size:9px;font-weight:700;color:var(--dim);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border)">IT Reality</div>
+                <div style="font-size:13px;font-weight:600;color:var(--cream);margin-bottom:10px">Building system-level AI with file-level tools</div>
+                <div style="font-size:12px;color:var(--muted);line-height:1.6">· Agentic platform spans hundreds of interconnected services<br>· Current AI coding tools see one file — not the system<br>· Engineers building agents manually navigate the full service graph<br>· Tool capability doesn't match the ambition of the work</div>
+              </div>
+              <div style="background:var(--orange3);border:1px solid var(--orange2);border-radius:8px;padding:16px">
+                <div style="font-size:9px;font-weight:700;color:var(--orange);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--orange2)">How Cursor Fits</div>
+                <div style="font-size:13px;font-weight:600;color:var(--cream);margin-bottom:10px">Full system context for system-level work</div>
+                <div style="font-size:12px;color:var(--cream);line-height:1.6">· Cursor indexes the full proprietary codebase — not just open files<br>· Agent mode reasons across services the way the system actually works<br>· Engineers building agentic products use an agentic tool<br>· Shadow users on the platform team are the entry point</div>
+              </div>
+            </div>
           </div>
-          <div class="value-driver">
-            <div class="vd-icon" style="background:#1F1A08">📈</div>
-            <div><div class="vd-title">Revenue $39B+ · Technology spend the primary growth lever</div><div class="vd-desc">Capital One reported $39B revenue in 2024 (pre-Discover). Post-acquisition, the bank is now a $659B asset institution — the largest US credit card issuer by loans. Unlike peers still funding cloud migration (JPMorgan targeting 80% cloud by 2025, BofA investing billions in data infrastructure), Capital One is already past the foundation and competing at the application layer. Developer productivity is a top-line lever, not a cost centre.</div></div>
+
+          <!-- USE CASE 3: Developer Velocity -->
+          <div id="uc-velocity" class="uc-panel" style="display:none">
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
+              <div style="background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:16px">
+                <div style="font-size:9px;font-weight:700;color:var(--dim);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border)">Business Context</div>
+                <div style="font-size:13px;font-weight:600;color:var(--cream);margin-bottom:10px">$659B institution — developer output is a top-line lever</div>
+                <div style="font-size:12px;color:var(--muted);line-height:1.6">· Already past cloud foundation — competing at the application layer<br>· 17,000 engineers are the primary growth engine<br>· Two acquisitions demand faster shipping, not more headcount<br>· Catherine McGarvey tracks PR velocity weekly — it's a business metric</div>
+              </div>
+              <div style="background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:16px">
+                <div style="font-size:9px;font-weight:700;color:var(--dim);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border)">IT Reality</div>
+                <div style="font-size:13px;font-weight:600;color:var(--cream);margin-bottom:10px">IBE at scale · 2,000+ agile teams · PR backlog problem</div>
+                <div style="font-size:12px;color:var(--muted);line-height:1.6">· 170,000 deployments/month through IBE<br>· Skeleton repo → production PR gap is where velocity bleeds at every sprint<br>· Last AI tool deprecated because PR backlogs grew, not shrank<br>· No codebase-aware AI between IBE handoff and first PR</div>
+              </div>
+              <div style="background:var(--orange3);border:1px solid var(--orange2);border-radius:8px;padding:16px">
+                <div style="font-size:9px;font-weight:700;color:var(--orange);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--orange2)">How Cursor Fits</div>
+                <div style="font-size:13px;font-weight:600;color:var(--cream);margin-bottom:10px">Cursor is IBE's missing layer</div>
+                <div style="font-size:12px;color:var(--cream);line-height:1.6">· Fills the skeleton repo → production PR gap with codebase-aware AI<br>· Multi-file agent mode handles what IBE provisioned but can't see<br>· PR quality up, revision cycles down — the metric McGarvey tracks<br>· Benchmark: Coinbase 150 → 500+ engineers after PR velocity improved</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- USE CASE 4: Security & Governance -->
+          <div id="uc-security" class="uc-panel" style="display:none">
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
+              <div style="background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:16px">
+                <div style="font-size:9px;font-weight:700;color:var(--dim);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border)">Business Context</div>
+                <div style="font-size:13px;font-weight:600;color:var(--cream);margin-bottom:10px">$659B asset institution — ungoverned AI is a board risk</div>
+                <div style="font-size:12px;color:var(--muted);line-height:1.6">· CISO Chris Nims owns the security mandate — independent budget authority<br>· Regulated FSI environment: every AI tool touching the SDLC needs governance<br>· Post-Discover: new engineers + new codebase + ungoverned tools = compounded risk<br>· Security sign-off is a gate, not a formality</div>
+              </div>
+              <div style="background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:16px">
+                <div style="font-size:9px;font-weight:700;color:var(--dim);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border)">IT Reality</div>
+                <div style="font-size:13px;font-weight:600;color:var(--cream);margin-bottom:10px">No M365 EA · OSS culture · Shadow usage near-certain</div>
+                <div style="font-size:12px;color:var(--muted);line-height:1.6">· AWS-primary, no Azure EA — Copilot not bundled, not governed<br>· 17,000 engineers + open source culture = shadow Cursor usage already happening<br>· No admin visibility, no privacy controls, mixed data handling<br>· IT has no way to know what code is leaving the environment</div>
+              </div>
+              <div style="background:var(--orange3);border:1px solid var(--orange2);border-radius:8px;padding:16px">
+                <div style="font-size:9px;font-weight:700;color:var(--orange);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--orange2)">How Cursor Fits</div>
+                <div style="font-size:13px;font-weight:600;color:var(--cream);margin-bottom:10px">Converts shadow risk into governed deployment</div>
+                <div style="font-size:12px;color:var(--cream);line-height:1.6">· Privacy Mode enforced org-wide — code is not stored or retained<br>· SOC 2 Type II · Zero Data Retention · audit logs<br>· Admin console: full visibility into usage and policy compliance<br>· Security conversation, not productivity — Chris Nims has the budget</div>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div id="snapshot-it" class="tab-panel">
-          <div class="value-driver">
-            <div class="vd-icon" style="background:var(--orange3)">⚙️</div>
-            <div><div class="vd-title">IBE — Intent-Based Engineering · 2,000+ agile teams · 170K deployments/month</div><div class="vd-desc">Capital One's proprietary Internal Developer Platform provisions VPC, DB, CI/CD, security, and observability automatically when a developer declares their intent. The platform generates a skeleton repo and handles deployment to production. 170K website backend adjustments per month run through IBE. The critical gap: IBE hands a skeleton repo — everything from that point to a production-ready PR (YAML authoring, codebase Q&A, feature coding, pre-commit review) is left to the engineer. That is precisely where Cursor's codebase context creates lift.</div></div>
-          </div>
-          <div class="value-driver">
-            <div class="vd-icon" style="background:#0C1520">🎓</div>
-            <div><div class="vd-title">C1 Developer Academy — 200 new engineers/year · 3–6 month ramp on unfamiliar codebase</div><div class="vd-desc">Capital One's Technology Development Program trains ~200 non-CS-background engineers per year through an 18-month rotational programme. Ramp time is 3–6 months — not because the programme is slow, but because understanding a distributed microservices codebase through documentation alone is inherently slow. Discover adds ~3,000 engineers to this onboarding challenge simultaneously. Cursor indexes the codebase immediately, making the AI an always-available guide through an unknown system. Ramp months → weeks.</div></div>
-          </div>
-          <div class="value-driver">
-            <div class="vd-icon" style="background:#0A1F18">🚫</div>
-            <div><div class="vd-title">No M365 / Azure EA — deliberate anti-lock-in architecture</div><div class="vd-desc">Capital One was the first major US bank to close all data centres and go AWS-primary. They explicitly avoid Microsoft Azure EA bundling — GitHub Copilot Enterprise requires an Azure EA, creating a structural conflict with Capital One's cloud posture. This means: (1) Copilot is not bundled into any existing contract; (2) any AI coding tool competes purely on merit; (3) 17,000 engineers with no M365 bundling means shadow Cursor usage is near-certain and ungoverned — a CISO-level risk that Privacy Mode + SOC 2 Type II resolves.</div></div>
-          </div>
-          <div class="value-driver">
-            <div class="vd-icon" style="background:#1F1A08">🌐</div>
-            <div><div class="vd-title">AWS Lambda at scale · 100+ OSS projects · GitHub Enterprise confirmed</div><div class="vd-desc">Serverless at enterprise scale — Eno (intelligent assistant) and agentic car-buying platform both run Lambda-native. 100+ open source projects at capitalone.github.io. GitHub Enterprise confirmed as source control (100+ public Capital One repos). Engineers are public contributors, vocal in the developer community, and highly likely to have discovered Cursor through OSS channels. This is the PLG entry point: shadow users already exist — the motion is identification and governance, not education.</div></div>
-          </div>
-        </div>
-
-        <div id="snapshot-cursor" class="tab-panel">
-          <div class="value-driver">
-            <div class="vd-icon" style="background:var(--orange3)">🚀</div>
-            <div>
-              <div class="vd-title">Discover onboarding — ramp months → weeks · $2.5B+ synergy clock is ticking</div>
-              <div class="vd-desc">3,000 Discover engineers must navigate a 40-year Discover tech stack. At 3–6 months ramp × 3,000 engineers, the productivity drag is measurable in thousands of engineer-months. Cursor indexes the Discover codebase immediately — engineers ask questions in the IDE instead of reading stale documentation. The synergy realisation timeline is directly tied to how fast these engineers become productive. This is the most financially quantifiable Cursor argument at Capital One and directly connects to Fairbank's integration narrative.</div>
-            </div>
-          </div>
-          <div class="value-driver">
-            <div class="vd-icon" style="background:#0A1F18">⚙️</div>
-            <div>
-              <div class="vd-title">IBE feature gap — skeleton repo to production PR is where velocity is lost</div>
-              <div class="vd-desc">IBE provisions the infrastructure and hands a skeleton repo. With 2,000+ agile teams, the gap from skeleton to production PR — YAML authoring, skeleton Q&A, feature coding, pre-commit review — is where velocity bleeds out at every sprint. Cursor is not a replacement for IBE; it is IBE's missing layer. Agent mode handles multi-file changes across the microservices graph that IBE provisioned but can't see inside. PR quality goes up. PR backlog (the metric that killed the last tool Catherine McGarvey deprecated) goes down.</div>
-            </div>
-          </div>
-          <div class="value-driver">
-            <div class="vd-icon" style="background:#1A0808">🔒</div>
-            <div>
-              <div class="vd-title">Shadow Cursor governance — live security risk · CISO Chris Nims owns this</div>
-              <div class="vd-desc">17,000 engineers, no M365 EA bundling, open-source culture = near-certain shadow Cursor usage. CISO Chris Nims runs a $659B asset institution — ungoverned AI tool usage in the SDLC is a material risk. CISO Rich Baich (AT&T) put the problem precisely: "They drop it in, we don't know about it at scale, then have to bring it back through the SDLC." Cursor Enterprise + Privacy Mode + SOC 2 Type II + ZDR converts an existing shadow risk into a governed, compliant deployment. This is a security conversation, not a developer productivity one — and Chris Nims has budget authority independent of Catherine McGarvey.</div>
-            </div>
-          </div>
-          <div class="value-driver">
-            <div class="vd-icon" style="background:#0C1520">📊</div>
-            <div>
-              <div class="vd-title">PR velocity · Catherine McGarvey tracks it weekly · Cursor moves the metric directly</div>
-              <div class="vd-desc">Catherine McGarvey runs weekly tooling usage reviews and deprecated the last AI tool because PR backlogs grew. Cursor's full-codebase context and agent mode directly address both causes: engineers trust AI-generated code when the AI understands the full system, and multi-file agent tasks reduce the number of PRs that require back-and-forth. Coinbase went from 150 to 500+ Cursor engineers in weeks after seeing PR velocity improve. The metric Catherine tracks is the metric Cursor moves.</div>
-            </div>
-          </div>
-        </div>
 
         <div id="snapshot-medd" class="tab-panel">
           <div class="medd-grid">
             <div class="medd-card" style="border-left:3px solid var(--orange)">
               <div class="medd-letter" style="color:var(--orange)">M</div>
               <div class="medd-name">Metrics</div>
-              <p>30–50% faster feature development in agentic product teams. Measurable via PR merge frequency, sprint velocity, and developer NPS. Benchmark: Coinbase went from 150 to 500+ Cursor engineers in weeks after seeing velocity gains.</p>
+              <p>· 30–50% faster feature dev in agentic teams<br>· KPIs: PR merge freq, sprint velocity, dev NPS<br>· Benchmark: Coinbase 150 → 500+ engineers in weeks</p>
             </div>
             <div class="medd-card" style="border-left:3px solid var(--orange)">
               <div class="medd-letter" style="color:var(--orange)">E</div>
               <div class="medd-name">Economic Buyer</div>
-              <p>Rob Alexander (CIO) is the named executive officer and ultimate budget authority for enterprise tooling. Catherine McGarvey (SVP DevEx) is the operational economic buyer who runs the POC process. Decision likely sits with McGarvey as evaluator, Alexander as approver. CEO Rich Fairbank has stated technology as core to competitive strategy — air cover exists.</p>
+              <p>· Rob Alexander (CIO) — ultimate budget authority<br>· Catherine McGarvey (SVP DevEx) — operational buyer, runs POC<br>· CEO Fairbank air cover: "technology company that does banking"</p>
             </div>
             <div class="medd-card" style="border-left:3px solid var(--amber)">
               <div class="medd-letter" style="color:var(--amber)">D</div>
               <div class="medd-name">Decision Criteria</div>
-              <p>Security/Privacy Mode ✓ · Enterprise admin controls ✓ · Codebase context (AWS/microservices) ✓ · Model neutrality — no Azure/M365 lock-in ✓ · Adoption rate (PLG → enterprise) ✓ · Integration with GitHub Enterprise ✓ · No sunk-cost EA defense for incumbent (Copilot, if deployed, is per-seat, not bundled) ✓</p>
+              <p>· Privacy Mode + SOC 2 + ZDR ✓<br>· Full codebase context (AWS/microservices) ✓<br>· Model neutrality — no Azure lock-in ✓<br>· GitHub Enterprise integration ✓</p>
             </div>
             <div class="medd-card" style="border-left:3px solid var(--amber)">
               <div class="medd-letter" style="color:var(--amber)">D</div>
               <div class="medd-name">Decision Process</div>
-              <p>Security review (Privacy Mode/SOC2 addresses) → Engineering champion validation → IT/Procurement → Legal (DPA) → Pilot with 50-100 engineers → Expansion. Expected cycle: 90 days to POC, 6 months to enterprise agreement.</p>
+              <p>· Security review → champion validation → IT/Procurement → Legal<br>· Pilot: 50–100 engineers, 4 weeks, 3 KPIs<br>· Est. timeline: 90 days to POC · 6 months to enterprise</p>
             </div>
             <div class="medd-card" style="border-left:3px solid var(--blue)">
               <div class="medd-letter" style="color:var(--blue)">P</div>
               <div class="medd-name">Paper Process</div>
-              <p>Capital One is AWS-native — no Microsoft EA complication. Procurement runs standard security questionnaire → DPA → MSA. No bundling friction. Estimated procurement timeline: 30-45 days after champion validation.</p>
+              <p>· AWS-native — no Microsoft EA complication<br>· Standard: security Q → DPA → MSA<br>· Est. 30–45 days post champion validation</p>
             </div>
             <div class="medd-card" style="border-left:3px solid var(--orange)">
               <div class="medd-letter" style="color:var(--orange)">I</div>
               <div class="medd-name">Identify Pain</div>
-              <p>Real pain: Agentic AI platform engineers are building with Copilot file-level autocomplete for a product that requires full-codebase agent orchestration. The tool doesn't match the ambition of the work. Shadow Cursor users know this.</p>
+              <p>· Agentic AI platform engineers using file-level tools for system-level work<br>· IBE skeleton repo gap — no AI from repo to production PR<br>· 3,000 Discover engineers ramping with no codebase context tool</p>
             </div>
             <div class="medd-card" style="border-left:3px solid var(--teal)">
               <div class="medd-letter" style="color:var(--teal)">C</div>
               <div class="medd-name">Champion</div>
-              <p>Target: Principal/Staff Engineer on the Agentic AI or Auto Finance platform team — someone with influence AND a PLG-driven personal conviction about Cursor. Shadow user identification is the first motion. They have authority to run a POC and present results upward.</p>
+              <p>· Target: Principal/Staff Engineer on Agentic AI or Auto Finance team<br>· Needs: influence + personal Cursor conviction (PLG signal)<br>· First motion: shadow user identification via GitHub/LinkedIn</p>
             </div>
             <div class="medd-card" style="border-left:3px solid var(--red)">
               <div class="medd-letter" style="color:#B05050">C</div>
               <div class="medd-name">Competition</div>
-              <p>GitHub Copilot (incumbent, likely deployed). Claude Code (Anthropic, exploring). Risk: Capital One could build internal AI coding tooling (they've done it with Eno). Displacement argument: Cursor is model-neutral, workflow-native, and already has shadow users — not a cold start.</p>
+              <p>· GitHub Copilot (likely incumbent, per-seat not bundled)<br>· Claude Code (Anthropic, being explored)<br>· Risk: internal build — mitigated by existing shadow usage</p>
             </div>
           </div>
         </div>
@@ -1241,6 +1265,26 @@ function togglePD(el) {
   el.classList.toggle('open');
 }
 
+// USE CASE SUB-NAV
+function showUseCase(id) {
+  document.querySelectorAll('.uc-panel').forEach(p => p.style.display = 'none');
+  const panel = document.getElementById(id);
+  if (panel) panel.style.display = 'block';
+  document.querySelectorAll('.uc-btn').forEach(b => {
+    b.style.background = 'var(--bg3)';
+    b.style.borderColor = 'var(--border2)';
+    b.style.color = 'var(--muted)';
+    b.style.fontWeight = '500';
+  });
+  const btn = document.getElementById('uc-btn-' + id.replace('uc-',''));
+  if (btn) {
+    btn.style.background = 'var(--orange3)';
+    btn.style.borderColor = 'var(--orange)';
+    btn.style.color = 'var(--orange)';
+    btn.style.fontWeight = '600';
+  }
+}
+
 // NAVIGATION
 function toggleMenu() {
   document.querySelector('.sidebar').classList.toggle('open');
@@ -1274,7 +1318,7 @@ function switchTab(group, tab) {
   const panel = document.getElementById(`${group}-${tab}`);
   if (panel) panel.classList.add('active');
   const tabs = document.querySelectorAll(`#${group}-tabs .tab`);
-  const tabNames = {snapshot:['business','it','cursor','medd','radar','quadrant']};
+  const tabNames = {snapshot:['usecases','medd','radar','quadrant']};
   const names = tabNames[group] || [];
   tabs.forEach((t,i) => {
     if (names[i] === tab) t.classList.add('active');
